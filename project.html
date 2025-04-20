@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="project.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <title>Ongoing Exhibitions - Auto & Manual Scroll</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ac42c3b1f7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      
+.aunty {
+  background-color: #f8f9fa;
+  padding: 80px 0;
+  margin: 0;
+}
+
+.babai {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.h2 {
+  font-size: 36px;
+  color: #041f37;
+  margin-bottom: 30px;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #d0b200;
+}
+
+.swiper-container {
+  width: 100%;
+  height: auto;
+  padding: 30px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.swiper-wrapper {
+  display: flex;
+  align-items: stretch; 
+  padding: 20px 0;
+}
+
+.swiper-slide {
+  text-align: center;
+  background: #fff;
+  padding: 25px;
+  width: 350px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.swiper-slide:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.swiper-slide .img6 {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.swiper-slide:hover .img6 {
+  transform: scale(1.03);
+}
+
+.tags {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tags span {
+  display: inline-block;
+  background: #e9ecef;
+  padding: 5px 12px;
+  margin: 5px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #495057;
+  transition: all 0.3s ease;
+}
+
+.swiper-slide:hover .tags span {
+  background: #d0b200;
+  color: white;
+}
+
+.swiper-slide h3 {
+  font-size: 22px;
+  color: #041f37;
+  margin: 15px 0 10px;
+  font-weight: 600;
+}
+
+.swiper-slide p {
+  font-size: 14px;
+  color: #6c757d;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.swiper-slide p:last-child {
+  font-size: 13px;
+  color: #d0b200;
+  font-weight: 600;
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.swiper-button-prev, 
+.swiper-button-next {
+  color: white;
+  background: rgba(4, 31, 55, 0.8);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-prev:hover, 
+.swiper-button-next:hover {
+  background: #d0b200;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.swiper-button-prev {
+  left: 20px;
+}
+
+.swiper-button-next {
+  right: 20px;
+}
+
+.swiper-button-prev::after, 
+.swiper-button-next::after {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .h2 {
+      font-size: 28px;
+  }
+  
+  .swiper-slide {
+      width: 300px;
+      padding: 20px;
+  }
+  
+  .swiper-slide .img6 {
+      height: 200px;
+  }
+  
+  .swiper-button-prev, 
+  .swiper-button-next {
+      width: 40px;
+      height: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .aunty {
+      padding: 60px 0;
+  }
+  
+  .h2 {
+      font-size: 24px;
+  }
+  
+  .swiper-slide {
+      width: 280px;
+  }
+  
+  .swiper-button-prev {
+      left: 5px;
+  }
+  
+  .swiper-button-next {
+      right: 5px;
+  }
+}
+
+.registration-receipt {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 2px dashed #d0b200;
+    margin-top: 20px;
+}
+
+.receipt-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.receipt-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.receipt-body {
+    margin-bottom: 20px;
+}
+
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.receipt-label {
+    color: #666;
+    font-weight: 500;
+}
+
+.receipt-value {
+    color: #333;
+    font-weight: 600;
+}
+
+.receipt-value.status {
+    color: #28a745;
+}
+
+.receipt-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.receipt-note {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.print-receipt {
+    background: transparent;
+    border: 2px solid #d0b200;
+    color: #d0b200;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.print-receipt:hover {
+    background: #d0b200;
+    color: white;
+}
+
+@media print {
+    .modal-content {
+        border: none !important;
+        box-shadow: none !important;
+    }
+    
+    .modal-header,
+    .modal-footer,
+    .receipt-actions {
+        display: none !important;
+    }
+    
+    .registration-receipt {
+        border: none !important;
+        box-shadow: none !important;
+    }
+}
+
+.receipt-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.receipt-actions button {
+    background: transparent;
+    border: 2px solid #d0b200;
+    color: #d0b200;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.receipt-actions button:hover {
+    background: #d0b200;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.receipt-actions button i {
+    margin-right: 5px;
+}
+
+.continue-shopping {
+    background: #d0b200 !important;
+    color: white !important;
+}
+
+.continue-shopping:hover {
+    background: #b39600 !important;
+}
+
+.close-modal {
+    background: #dc3545 !important;
+    color: white !important;
+    border-color: #dc3545 !important;
+}
+
+.close-modal:hover {
+    background: #c82333 !important;
+}
+
+#userDisplayName {
+    color: #fff;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+#userDisplayName:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.modal-header .modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.auth-form .form-floating {
+    position: relative;
+}
+
+.auth-form .form-control {
+    height: 60px;
+    padding: 1rem 0.75rem;
+    font-size: 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.auth-form .form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+}
+
+.auth-form .form-floating label {
+    padding: 1rem 0.75rem;
+    color: #6c757d;
+}
+
+.auth-form .btn-primary {
+    height: 50px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #0d6efd, #0a58ca);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.auth-form .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+}
+
+.auth-form .btn-primary:active {
+    transform: translateY(0);
+}
+
+.auth-form a {
+    color: #0d6efd;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.auth-form a:hover {
+    color: #0a58ca;
+    text-decoration: underline;
+}
+
+.modal.fade .modal-dialog {
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
+}
+
+/* Loading state for buttons */
+.auth-form .btn-primary.loading {
+    position: relative;
+    color: transparent;
+}
+
+.auth-form .btn-primary.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: button-loading 0.8s linear infinite;
+}
+
+@keyframes button-loading {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Profile Section Styles */
+.profile-section {
+    display: none;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+
+.profile-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #d0b200;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.profile-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.profile-info-item {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.profile-info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.profile-info-item i {
+    width: 50px;
+    height: 50px;
+    background: #d0b200;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+}
+
+.profile-info-content h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.profile-info-content p {
+    margin: 0.5rem 0 0;
+    color: #666;
+}
+
+/* Profile Tabs */
+.profile-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #eee;
+}
+
+.profile-tab {
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.profile-tab.active {
+    color: #d0b200;
+}
+
+.profile-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #d0b200;
+}
+
+/* Cart and Orders Section */
+.cart-section, .orders-section, .events-section {
+    display: none;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+}
+
+.cart-section.active, .orders-section.active, .events-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.cart-item, .order-item, .event-item {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.cart-item:hover, .order-item:hover, .event-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.cart-item img, .order-item img, .event-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 1.5rem;
+}
+
+.cart-item-info, .order-item-info, .event-item-info {
+    flex: 1;
+}
+
+.cart-item-info h3, .order-item-info h3, .event-item-info h3 {
+    margin: 0 0 0.5rem;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.cart-item-info p, .order-item-info p, .event-item-info p {
+    margin: 0;
+    color: #666;
+}
+
+.cart-item-price, .order-item-price, .event-item-date {
+    font-weight: 600;
+    color: #d0b200;
+    font-size: 1.2rem;
+}
+
+/* Profile Actions */
+.profile-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.profile-actions button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-edit {
+    background: #d0b200;
+    color: white;
+}
+
+.btn-edit:hover {
+    background: #b39600;
+    transform: translateY(-2px);
+}
+
+.btn-logout {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-logout:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+}
+
+/* Dark mode styles */
+body.dark-mode .profile-section,
+body.dark-mode .cart-section,
+body.dark-mode .orders-section,
+body.dark-mode .events-section {
+    background: #222222;
+}
+
+body.dark-mode .profile-info-item,
+body.dark-mode .cart-item,
+body.dark-mode .order-item,
+body.dark-mode .event-item {
+    background: #333333;
+}
+
+body.dark-mode .profile-info-content h3,
+body.dark-mode .cart-item-info h3,
+body.dark-mode .order-item-info h3,
+body.dark-mode .event-item-info h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .profile-info-content p,
+body.dark-mode .cart-item-info p,
+body.dark-mode .order-item-info p,
+body.dark-mode .event-item-info p {
+    color: #b0b0b0;
+}
+
+body.dark-mode .profile-tabs {
+    border-bottom-color: #444444;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+    </style>
+</head>
+<body>
+    <div class="bg1" id="section1">
+        
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex flex-row" href="#">
+                    <img src="https://media-hosting.imagekit.io//60e42a3ab49942ef/fa2b9c5cbb3c4427ecc950d94692dc2f-removebg-preview.png?Expires=1837331377&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=iNhzkidAdf9QBggS1WU8J748vOiq2abSHtw4O0JdWI~xVn~FV4GEwnPN8lQ6WGTBsqx0T44WA2myzB0gG~R1ROwZ~-SNnhu3cCncgCOJ1WH5A0uLdyrl-cIGSM7yhYiJhQ-zt7XK3dmDLMH7QVepVmWfqeYOfzb6QwydzsXiGcMLZzJNe0oADcvr6Zb2QvqrdRMoma1Zwhpgvec9QvdATs5xwW9tXJvAIPeEuvTo-nXPJpEohjiX-lY5c6YeTVljo-I3lSW5XOwKsrnHI6Xl0ZHITZGhC-T2BwdadNExi9arRNG2Vg5i2wG~lpNRDZe-1lOPaoL88VQ6HIunTtwwNQ__" 
+                    class="img"/>
+                    <p class="lp">Art Gallery</p>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="artists.html">Arts</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#coupon">Coupon</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#upcoming">Upcoming</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Ongoing">Ongoing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="profile.html" title="Profile"><i class="fas fa-user-circle"></i></a></li>
+                        <li class="nav-item dropdown" id="authDropdown">
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="bg d-flex justify-content-center flex-column" id = "home">
+          <div class="text-center">
+            <h1 class="banner-heading mb-3">ART GALLERY</h1>
+            <p class="banner-caption mb-4">Famous Thread Art</p>
+            <a href="artists.html" class="btn-primar">Get Started</a>
+          </div>
+        </div>
+    </div> 
+    <div class="cont">
+        <div class="car-wrapper">
+            <div class="car-box">
+                <i class="fas fa-clock icon"></i> 
+                <div class="car-content-visible">
+                <h3 class="car-header">Opening Hours</h3>
+                    <p>Mon - Fri: 10.00am to 05.00pm<br>Sat: 12.00pm to 03.00pm<br>Sunday Closed</p>
+                </div>
+                <div class="car-content-hidden">
+                    <p>Here, I focus on a range of items and features that we use in life.</p>
+                    <button class="btn-primar">BUY TICKET</button>
+                </div>
+            </div>
+            <div class="car-box">
+                <i class="fas fa-rocket icon"></i>
+                <div class="car-content-visible">
+                <h3 class="car-header">Ongoing Exhibitions</h3>
+                    <p>Mon - Fri: 10.00am to 05.00pm<br>Sat: 12.00pm to 03.00pm<br>Sunday Closed</p>
+                </div>
+                <div class="car-content-hidden">
+                    <p>Here, I focus on a range of items and features that we use in life.</p>
+                    <button class="btn-primar">BUY TICKET</button>
+                </div>
+            </div>
+            <div class="car-box">
+                <i class="fas fa-briefcase icon"></i>
+                <div class="car-content-visible">
+                <h3 class="car-header">Opening Events</h3>
+                    <p>Mon - Fri: 10.00am to 05.00pm<br>Sat: 12.00pm to 03.00pm<br>Sunday Closed</p>
+                </div>
+                <div class="car-content-hidden">
+                    <p>Here, I focus on a range of items and features that we use in life.</p>
+                    <button class="btn-primar">BUY TICKET</button>
+                </div>
+            </div>
+        </div>  
+    </div>
+    <div class="by" id ="upcoming">
+      <h2 class="two">Checkout our Upcoming Events</h2>
+      <p class="subtitle">Who are in extremely love with eco-friendly system.</p>
+      <div class="event-container">
+          <div class="event">
+              <img src="https://t4.ftcdn.net/jpg/10/02/81/57/360_F_1002815727_q43lhTiGhvKMcUWsbqBtFQFAgLqwqQTD.jpg" alt="Event Image">
+              <div class="event-content">
+                  <h3 class = "h3">Event on the rock solid carbon</h3>
+                  <div class="event-info">
+                      <p class="date">21st February at Central government museum</p>
+                      <p>Inappropriate behavior is often laughed off as "boys will be boys," women face higher conduct standards especially.</p>
+                  </div>
+                  <a href="#" class="btn8" data-toggle="modal" data-target="#eventModal" data-event-title="Event on the rock solid carbon" data-event-date="21st February at Central government museum" data-event-description="Inappropriate behavior is often laughed off as 'boys will be boys,' women face higher conduct standards especially." data-event-image="https://t4.ftcdn.net/jpg/10/02/81/57/360_F_1002815727_q43lhTiGhvKMcUWsbqBtFQFAgLqwqQTD.jpg">VIEW DETAILS</a>
+              </div>
+          </div> 
+          <div class="event">
+              <img src="https://creator.nightcafe.studio/jobs/OEVgbcAFPJYLTEH19Vzy/OEVgbcAFPJYLTEH19Vzy--1--9eq19.jpg" alt="Event Image">
+              <div class="event-content">
+                  <h3 class = "h3">Historical Art & Sculpture</h3>
+                  <div class="event-info">
+                      <p class="date">10th March at Art Museum</p>
+                      <p>Explore timeless sculptures and artworks from different centuries.</p>
+                  </div>
+                  <a href="#" class="btn8" data-toggle="modal" data-target="#eventModal" data-event-title="Historical Art & Sculpture" data-event-date="10th March at Art Museum" data-event-description="Explore timeless sculptures and artworks from different centuries." data-event-image="https://i.etsystatic.com/15023888/r/il/df6f8b/1453722924/il_fullxfull.1453722924_rann.jpg">VIEW DETAILS</a>
+              </div>
+          </div>
+          <div class="event">
+              <img src="https://images.saatchiart.com/saatchi/2244907/art/10637033/9699519-AZCRLFJB-32.jpg" alt="Event Image">
+              <div class="event-content">
+                  <h3 class = "h3">Photography Exhibition</h3>
+                  <div class="event-info">
+                      <p class="date">5th April at National Gallery</p>
+                      <p>Discover stunning black and white photography from global artists.</p>
+                  </div>
+                  <a href="#" class="btn8" data-toggle="modal" data-target="#eventModal" data-event-title="Photography Exhibition" data-event-date="5th April at National Gallery" data-event-description="Discover stunning black and white photography from global artists." data-event-image="https://images.saatchiart.com/saatchi/2244907/art/10637033/9699519-AZCRLFJB-32.jpg">VIEW DETAILS</a>
+              </div>
+          </div>
+          <div class="event">
+              <img src="https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/3/2002-lamborghini-murcilago-62l-v12-supercar-s-by-asar-studios-celestial-images.jpg" alt="Event Image">
+              <div class="event-content">
+                  <h3 class = "h3">Modern Art & Graffiti</h3>
+                  <div class="event-info">
+                      <p class="date">20th May at Urban Art Center</p>
+                      <p>Urban creativity brought to life through graffiti and street art.</p>
+                  </div>
+                  <a href="#" class="btn8" data-toggle="modal" data-target="#eventModal" data-event-title="Modern Art & Graffiti" data-event-date="20th May at Urban Art Center" data-event-description="Urban creativity brought to life through graffiti and street art." data-event-image="https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/3/2002-lamborghini-murcilago-62l-v12-supercar-s-by-asar-studios-celestial-images.jpg">VIEW DETAILS</a>
+              </div>
+          </div>
+      </div>
+    </div> 
+    <div class = "aunty" id = "Ongoing">
+        <div class="babai">
+            <h2 class="h2">Ongoing Exhibitions</h2>
+
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://thumbs.dreamstime.com/b/oil-painting-boat-boats-sunset-68147702.jpg" class = "img6" alt="Exhibition 1">
+                        <div class="tags"><span>Modern Art</span> <span>Gallery</span></div>
+                        <h3>Exhibition 1</h3>
+                        <p>Explore the beauty of abstract paintings.</p>
+                        <p>31st March, 2025</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://www.framinghouse.in/images/nature-paintings/nb2.jpg" class = "img6" alt="Exhibition 2">
+                        <div class="tags"><span>Sculpture</span> <span>Art Museum</span></div>
+                        <h3>Exhibition 2</h3>
+                        <p>Discover historical sculptures from ancient times.</p>
+                        <p>10th April, 2025</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.pexels.com/photos/164455/pexels-photo-164455.jpeg" class = "img6" alt="Exhibition 3">
+                        <div class="tags"><span>Photography</span> <span>Black & White</span></div>
+                        <h3>Exhibition 3</h3>
+                        <p>Stunning black and white photography collection.</p>
+                        <p>15th April, 2025</p>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/3/2002-lamborghini-murcilago-62l-v12-supercar-s-by-asar-studios-celestial-images.jpg" class = "img6" alt="Exhibition 4">
+                        <div class="tags"><span>Graffiti</span> <span>Street Art</span></div>
+                        <h3>Exhibition 4</h3>
+                        <p>Urban creativity brought to life.</p>
+                        <p>20th April, 2025</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://render.fineartamerica.com/images/images-profile-flow/400/images-medium-large-5/-lion-head-in-front-marcin-moderski.jpg" class = "img6" alt="Exhibition 5">
+                        <div class="tags"><span>Digital Art</span> <span>Innovative</span></div>
+                        <h3>Exhibition 5</h3>
+                        <p>Futuristic digital creations.</p>
+                        <p>30th April, 2025</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://www.artmajeur.com/medias/hd/v/i/vincent-bardou/artwork/14080613_dsc0084.jpg" class = "img6" alt="Exhibition 6">
+                        <div class="tags"><span>Traditional</span> <span>Culture</span></div>
+                        <h3>Exhibition 6</h3>
+                        <p>Timeless pieces from around the world.</p>
+                        <p>5th May, 2025</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://i.etsystatic.com/5754023/r/il/531c39/3958820887/il_570xN.3958820887_lwhz.jpg" class = "img6" alt="Exhibition 7">
+                        <div class="tags"><span>Impressionism</span> <span>Classic</span></div>
+                        <h3>Exhibition 7</h3>
+                        <p>Masterpieces from the Impressionist era.</p>
+                        <p>15th May, 2025</p>
+                    </div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </div>
+    <div class = "bg7" id = "gallery">
+      <h1>Our Exhibition Gallery</h1>
+      <p>About gallery</p>
+    
+      <div>
+        <div class = "d-flex flex-row justify-content-center">
+          <img src = "https://rukminim3.flixcart.com/image/850/1000/jusp3m80/painting/r/u/4/aag-256-new-anjani-art-gallery-original-imafftujbymyyyga.jpeg?q=90&crop=false" class = "img1"/>
+          <img src = "https://eonlineartgallery.com/admin/public/uploads/art/1218-Senaka-Senanayake.jpg" class = "img1"/>
+          <img src = "https://pngadgilandsons.com/wp-content/uploads/2018/06/painting-960x750.jpg" class = "img1"/>
+          <img src = "https://i.ebayimg.com/images/g/Kz4AAOSw8Ddi2ZZA/s-l1200.jpg" class = "img1"/>
+        </div>
+        <div class = "i1">
+            <img src = "https://img.freepik.com/premium-photo/painting-classic-car-desert_900958-13239.jpg" class = "img1"/>
+          <img src = "https://thumbs.dreamstime.com/b/oil-painting-classic-european-country-house-nice-summer-weather-mediterranean-sea-mountains-background-ai-generated-359964478.jpg" class = "img1"/>
+          <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtBs35O9ukPMh2o3xYj2b4naZ_0kED-9wAagL9TfHb-WcgeZJuXB56xXDNKTbFWEOUnS8&usqp=CAU" class = "img1"/>
+          
+        </div>
+        <div class = "i2">
+          <img src = "https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/3/lamborghini-aventador-svj-road-splash-kari-goldfalse.jpg" class = "img1"/>
+          <img src = "https://thumbs.dreamstime.com/b/oil-painting-street-view-london-99300215.jpg" class = "img1"/>
+          <img src = "https://t4.ftcdn.net/jpg/10/02/81/57/360_F_1002815727_q43lhTiGhvKMcUWsbqBtFQFAgLqwqQTD.jpg" class = "img1"/>
+        </div>
+      </div>
+    </div>
+    <div class="delivery-and-payment-section pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-5 order-1 order-md-2">
+                    <div class="text-center">
+                        <img
+                            src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/delivery-payment-section-img.png"
+                            class="delivery-and-payment-section-img"
+                        />
+            </div>
+          </div>
+                <div class="col-12 col-md-7 order-2 order-md-1">
+                    <h1 class="delivery-and-payment-section-heading">
+                        Delivery and Payment
+                    </h1>
+                    <p class="delivery-and-payment-section-description">
+                        Enjoy hassle-free payment with the plenitude of payment options
+                        available for you. Get live tracking and locate your food on a
+                        live map. It's quite a sight to see your food arrive to your door.
+                        Plus, you get a 5% discount on every order every time you pay
+                        online.
+                    </p>
+                    <button class="custom-button">Order Now</button>
+                    <div class="mt-3">
+                        <img
+                            src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/visa-card-img.png"
+                            class="payment-card-img"
+                        />
+                        <img
+                            src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/master-card-img.png"
+                            class="payment-card-img"
+                        />
+                        <img
+                            src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/paypal-card-img.png"
+                            class="payment-card-img"
+                        />
+                        <img
+                            src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/american-express-img.png"
+                            class="payment-card-img"
+                        />
+        </div>
+            </div>
+          </div>
+            </div>
+          </div>
+    <div class="thanking-customers-section pt-5 pb-5" id = "coupon">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-7 d-flex flex-column justify-content-center">
+                    <h1 class="thanking-customers-section-heading">
+                        Thank you for being a valuable customer to us.
+                    </h1>
+                    <p class="thanking-customers-section-description">
+                        We have a surprise gift for you
+                    </p>
+                    <div class="d-md-none">
+                        <img
+                            src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/thanking-customers-section-img.png"
+                            class="thanking-customers-section-img"
+                        />
+            </div>
+                    <div>
+                        <button type="button" class="custom-button" data-toggle="modal" data-target="#exampleModal">
+                            Redeem Gift
+                        </button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog mt-5">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                                            Gift Voucher
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+          </div>
+                                    <div class="modal-body">
+                                        <img
+                                            src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/gift-voucher-img.png"
+                                            class="w-100"
+                                        />
+        </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Close
+                                        </button>
+            </div>
+          </div>
+            </div>
+          </div>
+            </div>
+          </div>
+                <div class="col-12 col-md-5 d-none d-md-block">
+                    <img
+                        src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/thanking-customers-section-img.png"
+                        class="thanking-customers-section-img"
+                    />
+        </div>
+            </div>
+          </div>
+            </div>
+    <footer class="footer-section" id = "contact">
+        <div class="container">
+            <div class="footer-content pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-logo">
+                                <a href="index.html">
+                                    <img src="https://media-hosting.imagekit.io//60e42a3ab49942ef/fa2b9c5cbb3c4427ecc950d94692dc2f-removebg-preview.png?Expires=1837331377&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=iNhzkidAdf9QBggS1WU8J748vOiq2abSHtw4O0JdWI~xVn~FV4GEwnPN8lQ6WGTBsqx0T44WA2myzB0gG~R1ROwZ~-SNnhu3cCncgCOJ1WH5A0uLdyrl-cIGSM7yhYiJhQ-zt7XK3dmDLMH7QVepVmWfqeYOfzb6QwydzsXiGcMLZzJNe0oADcvr6Zb2QvqrdRMoma1Zwhpgvec9QvdATs5xwW9tXJvAIPeEuvTo-nXPJpEohjiX-lY5c6YeTVljo-I3lSW5XOwKsrnHI6Xl0ZHITZGhC-T2BwdadNExi9arRNG2Vg5i2wG~lpNRDZe-1lOPaoL88VQ6HIunTtwwNQ__" class="img-fluid" alt="logo">
+                                </a>
+
+          </div>
+                            <div class="footer-text">
+                                <p>Our art gallery showcases the finest collections from around the world. We bring culture, history and creativity together under one roof.</p>
+            </div>
+                            <div class="footer-social-icon">
+                                <span>Follow us</span>
+                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+                                <a href="#"><i class="fab fa-instagram instagram-bg"></i></a>
+          </div>
+        </div>
+      </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Quick Links</h3>
+    </div>
+                            <ul>
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#upcoming">Upcoming Events</a></li>
+                                <li><a href="#Ongoing">Ongoing Events</a></li>
+                                <li><a href="#gallery">Our Exhibition Gallery</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                                <li><a href="#coupon">Reedem Gift</a></li>
+                                <li><a href="#contact">Contact Us</a></li>
+                                <li><a href="#collections">Collections</a></li>
+                                <li><a href="#artists">Artists</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Subscribe</h3>
+                            </div>
+                            <div class="footer-text mb-25">
+                                <p>Don't miss to subscribe to our newsletter to get the latest updates about exhibitions and events.</p>
+                            </div>
+                            <div class="subscribe-form">
+                                <form id="contactForm" action="subscribe.php" method="post">
+                                    <input type="email" name="email" id="emailInput" placeholder="Email Address" required>
+                                    <button type="submit" id="submitBtn"><i class="fab fa-telegram-plane"></i></button>
+                                </form>
+                                <div id="formMessage" class="form-message"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="copyright-text text-center">
+                <p>Copyright &copy; 2025, All Right Reserved <a href="#">ArtGallery</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 'auto',
+            spaceBetween: 0,
+            loop: true,
+            autoplay: {
+                delay: 1500,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        // Event Modal Functionality
+        $(document).ready(function() {
+            // Event Modal Functionality
+            $('#eventModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var title = button.data('event-title');
+                var date = button.data('event-date');
+                var description = button.data('event-description');
+                var image = button.data('event-image');
+                
+                // Update modal content
+                var modal = $(this);
+                modal.find('#eventModalTitle').text(title);
+                modal.find('#eventModalDate').text(date);
+                modal.find('#eventModalDescription').text(description);
+                modal.find('#eventModalImage').attr('src', image);
+                
+                // Reset registration status
+                $('#registrationComplete').hide();
+                $('#registerButton').show().prop('disabled', false);
+                $('.btn-text').show();
+                $('.btn-loading').hide();
+            });
+
+            // Handle registration button click
+            $(document).on('click', '#registerButton', function(e) {
+                e.preventDefault();
+                var button = $(this);
+                var registrationComplete = $('#registrationComplete');
+                var eventTitle = $('#eventModalTitle').text();
+                var eventDate = $('#eventModalDate').text();
+                
+                // Show loading state
+                button.prop('disabled', true);
+                $('.btn-text').hide();
+                $('.btn-loading').show();
+                
+                // Simulate registration process
+                setTimeout(function() {
+                    // Update registration complete message
+                    registrationComplete.find('.event-name').text(eventTitle);
+                    registrationComplete.find('.event-date').text(eventDate);
+                    
+                    // Hide button and show success message
+                    button.hide();
+                    registrationComplete.removeClass('d-none').show();
+                }, 1500);
+            });
+
+            // Handle print receipt button click
+            $(document).on('click', '.print-receipt', function() {
+                window.print();
+            });
+
+            // Handle continue shopping button click
+            $(document).on('click', '.continue-shopping', function() {
+                $('#eventModal').modal('hide');
+                resetModalState();
+                // Redirect to artists.html page
+                window.location.href = 'artists.html';
+            });
+
+            // Handle close button click
+            $(document).on('click', '.close-modal', function() {
+                $('#eventModal').modal('hide');
+                resetModalState();
+            });
+
+            // Reset modal state when it's hidden
+            $('#eventModal').on('hidden.bs.modal', function () {
+                resetModalState();
+            });
+
+            // Function to reset modal state
+            function resetModalState() {
+                $('#registrationComplete').hide();
+                $('#registerButton').show().prop('disabled', false);
+                $('.btn-text').show();
+                $('.btn-loading').hide();
+            }
+        });
+
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const elements = document.querySelectorAll('.scroll-reveal');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Apply scroll-reveal class to elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add scroll-reveal class to sections
+            document.querySelectorAll('section, .event, .car-box, .swiper-slide, .footer-widget').forEach(element => {
+                element.classList.add('scroll-reveal');
+            });
+            
+            // Initial check for elements in view
+            revealOnScroll();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', revealOnScroll);
+            
+            // Add animation classes to specific elements
+            document.querySelector('.banner-heading').classList.add('slide-up');
+            document.querySelector('.banner-caption').classList.add('slide-up');
+            document.querySelector('.custom-outline-button').classList.add('scale-up');
+            
+            // Add highlight-text class to artist names
+            document.querySelectorAll('.artist-card h3').forEach(name => {
+                name.classList.add('highlight-text');
+            });
+            
+            // Add bounce animation to back-to-top button
+            document.querySelector('.back-to-top').classList.add('bounce');
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Contact form submission
+        // Contact form submission
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const emailInput = document.getElementById('emailInput');
+    const formMessage = document.getElementById('formMessage');
+    const submitBtn = document.getElementById('submitBtn');
+    const form = this;
+    
+    // Disable button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    
+    // Create FormData object
+    const formData = new FormData(form);
+    
+    // Send AJAX request
+    fetch(form.action, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Show message
+        formMessage.textContent = data.message;
+        formMessage.className = 'form-message ' + data.status;
+        formMessage.style.display = 'block';
+        
+        // Reset form if successful
+        if (data.status === 'success') {
+            form.reset();
+        }
+    })
+    .catch(error => {
+        formMessage.textContent = 'An error occurred. Please try again.';
+        formMessage.className = 'form-message error';
+        formMessage.style.display = 'block';
+    })
+    .finally(() => {
+        // Reset button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fab fa-telegram-plane"></i>';
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+            formMessage.style.display = 'none';
+        }, 5000);
+    });
+});
+        // Authentication state management
+        let isAuthenticated = false;
+        let currentUser = null;
+
+        // Check authentication state on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const storedAuth = localStorage.getItem('isAuthenticated');
+            const storedUser = localStorage.getItem('currentUser');
+            
+            if (storedAuth === 'true' && storedUser) {
+                isAuthenticated = true;
+                currentUser = JSON.parse(storedUser);
+                updateAuthUI();
+            }
+        });
+
+        // Handle signup form submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const errorDiv = document.getElementById('signupError');
+            
+            // Clear previous error messages
+            if (errorDiv) errorDiv.remove();
+            
+            // Validate inputs
+            if (!name || name.length < 3) {
+                showFormError(this, 'Name must be at least 3 characters long');
+                return;
+            }
+            
+            if (!email || !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                showFormError(this, 'Please enter a valid email address');
+                return;
+            }
+            
+            if (!password || password.length < 6) {
+                showFormError(this, 'Password must be at least 6 characters long');
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            // Simulate registration (in a real app, this would be an API call)
+            setTimeout(() => {
+                // Store user data in localStorage
+                const userData = {
+                    name: name,
+                    email: email,
+                    password: password // In a real app, never store passwords in localStorage
+                };
+                localStorage.setItem('userData', JSON.stringify(userData));
+                
+                isAuthenticated = true;
+                currentUser = {
+                    name: name,
+                    email: email
+                };
+                
+                // Save auth state
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                // Update UI
+                updateAuthUI();
+                
+                // Close modal
+                const signupModal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+                signupModal.hide();
+                
+                // Show success message
+                showPopupMessage('Successfully signed up! Please sign in to continue.', 'success');
+                
+                // Reset form
+                this.reset();
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                
+                // Show login modal
+                setTimeout(() => {
+                    const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                    loginModal.show();
+                }, 1500);
+            }, 1500);
+        });
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const submitBtn = this.querySelector('button[type="submit"]');
+            
+            // Clear previous error messages
+            const errorDiv = document.getElementById('loginError');
+            if (errorDiv) errorDiv.remove();
+            
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            // Get stored user data
+            const storedUserData = localStorage.getItem('userData');
+            
+            if (!storedUserData) {
+                showFormError(this, 'No account found. Please sign up first.');
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            const userData = JSON.parse(storedUserData);
+            
+            // Validate credentials
+            if (email !== userData.email || password !== userData.password) {
+                showFormError(this, 'Invalid email or password');
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            // Simulate authentication delay
+            setTimeout(() => {
+                isAuthenticated = true;
+                currentUser = {
+                    name: userData.name,
+                    email: userData.email
+                };
+                
+                // Save auth state
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                // Update UI
+                updateAuthUI();
+                
+                // Close modal
+                const loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+                loginModal.hide();
+                
+                // Show success message
+                showPopupMessage('Successfully signed in!', 'success');
+                
+                // Reset form
+                this.reset();
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                
+                // Handle pending purchase if any
+                if (pendingPurchase) {
+                    addToCart(...pendingPurchase);
+                    pendingPurchase = null;
+                }
+            }, 1500);
+        });
+
+        // Handle logout
+        document.querySelector('.auth-logout').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Clear authentication
+            isAuthenticated = false;
+            currentUser = null;
+            localStorage.removeItem('isAuthenticated');
+            localStorage.removeItem('currentUser');
+            
+            // Update UI
+            updateAuthUI();
+            
+            // Show success message
+            showPopupMessage('Successfully signed out!', 'success');
+        });
+
+        // Update UI based on authentication state
+        function updateAuthUI() {
+            const authDivider = document.querySelector('.auth-divider');
+            const authProfile = document.querySelector('.auth-profile');
+            const authLogout = document.querySelector('.auth-logout');
+            const userDisplayName = document.getElementById('userDisplayName');
+            
+            if (isAuthenticated && currentUser) {
+                authDivider.style.display = 'block';
+                authProfile.style.display = 'block';
+                authLogout.style.display = 'block';
+                userDisplayName.style.display = 'inline-block';
+                userDisplayName.textContent = currentUser.name;
+                
+                // Add a direct click handler to the profile link for debugging
+                authProfile.addEventListener('click', function(e) {
+                    console.log('Profile link clicked');
+                    // Don't prevent default - let it navigate normally
+                });
+            } else {
+                authDivider.style.display = 'none';
+                authProfile.style.display = 'none';
+                authLogout.style.display = 'none';
+                userDisplayName.style.display = 'none';
+            }
+        }
+
+        // Show alert message
+        function showPopupMessage(message, type = 'info') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 end-0 m-3`;
+            alertDiv.style.zIndex = '9999';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+            document.body.appendChild(alertDiv);
+            
+            // Remove alert after 3 seconds
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 3000);
+        }
+
+        // Helper function to show form errors
+        function showFormError(form, message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'alert alert-danger mt-3';
+            errorDiv.id = form.id === 'loginForm' ? 'loginError' : 'signupError';
+            errorDiv.textContent = message;
+            form.appendChild(errorDiv);
+        }
+
+        // Add this CSS to style error messages
+        const style = document.createElement('style');
+        style.textContent = `
+            .alert-danger {
+                color: #721c24;
+                background-color: #f8d7da;
+                border-color: #f5c6cb;
+                padding: 0.75rem 1.25rem;
+                margin-bottom: 1rem;
+                border: 1px solid transparent;
+                border-radius: 0.25rem;
+                animation: slideIn 0.3s ease-out;
+            }
+            
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Profile section functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileSection = document.getElementById('profileSection');
+            const profileTabs = document.querySelectorAll('.profile-tab');
+            const profileInfo = document.getElementById('profileInfo');
+            const cartSection = document.getElementById('cartSection');
+            const ordersSection = document.getElementById('ordersSection');
+            const eventsSection = document.getElementById('eventsSection');
+            const editProfileBtn = document.getElementById('editProfileBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            // Initialize default user data if not exists
+            if (!localStorage.getItem('currentUser')) {
+                const defaultUser = {
+                    name: 'G Jaswanth Lakshman',
+                    email: 'jaswanth@gmail.com',
+                    phone: '+1 738 642 9283',
+                    address: '123 Art Street, Gallery City',
+                    joinDate: 'January 2024',
+                    artStyle: 'Modern Art',
+                    eventsAttended: 5,
+                    orders: [],
+                    cart: []
+                };
+                localStorage.setItem('currentUser', JSON.stringify(defaultUser));
+            }
+
+            // Update profile UI
+            function updateProfileUI() {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                if (!currentUser) {
+                    profileSection.style.display = 'none';
+                    return;
+                }
+
+                profileSection.style.display = 'block';
+                document.getElementById('profileName').textContent = currentUser.name;
+                document.getElementById('profileEmail').textContent = currentUser.email;
+                document.getElementById('userEmail').textContent = currentUser.email;
+                document.getElementById('userPhone').textContent = currentUser.phone || 'Not provided';
+                document.getElementById('userAddress').textContent = currentUser.address || 'Not provided';
+                document.getElementById('userJoinDate').textContent = currentUser.joinDate || 'January 2024';
+                document.getElementById('userArtStyle').textContent = currentUser.artStyle || 'Not specified';
+                document.getElementById('userEventsCount').textContent = `${currentUser.eventsAttended || 0} Events`;
+            }
+
+            // Initialize profile UI
+            updateProfileUI();
+
+            // Tab switching functionality
+            profileTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and sections
+                    profileTabs.forEach(t => t.classList.remove('active'));
+                    [profileInfo, cartSection, ordersSection, eventsSection].forEach(section => {
+                        section.classList.remove('active');
+                    });
+
+                    // Add active class to clicked tab and corresponding section
+                    tab.classList.add('active');
+                    const tabName = tab.getAttribute('data-tab');
+                    document.getElementById(`${tabName}Section`).classList.add('active');
+                });
+            });
+
+            // Edit Profile functionality
+            editProfileBtn.addEventListener('click', () => {
+                // Get current user data
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                if (!currentUser) return;
+
+                // Create edit form
+                const editForm = document.createElement('div');
+                editForm.className = 'edit-profile-form';
+                editForm.innerHTML = `
+                    <h3>Edit Profile</h3>
+                    <form id="profileEditForm">
+                        <div class="form-group">
+                            <label for="editName">Name</label>
+                            <input type="text" id="editName" value="${currentUser.name}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPhone">Phone</label>
+                            <input type="tel" id="editPhone" value="${currentUser.phone || ''}">
+                        </div>
+                        <div class="form-group">
+                            <label for="editAddress">Address</label>
+                            <textarea id="editAddress">${currentUser.address || ''}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="editArtStyle">Favorite Art Style</label>
+                            <input type="text" id="editArtStyle" value="${currentUser.artStyle || ''}">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-save">Save Changes</button>
+                            <button type="button" class="btn-cancel">Cancel</button>
+                        </div>
+                    </form>
+                `;
+
+                // Show edit form
+                profileSection.appendChild(editForm);
+
+                // Handle form submission
+                const profileEditForm = document.getElementById('profileEditForm');
+                profileEditForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Update user data
+                    currentUser.name = document.getElementById('editName').value;
+                    currentUser.phone = document.getElementById('editPhone').value;
+                    currentUser.address = document.getElementById('editAddress').value;
+                    currentUser.artStyle = document.getElementById('editArtStyle').value;
+
+                    // Save to localStorage
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+                    // Update UI
+                    updateProfileUI();
+                    editForm.remove();
+                    showPopup('Profile updated successfully!', 'success');
+                });
+
+                // Handle cancel
+                const cancelBtn = editForm.querySelector('.btn-cancel');
+                cancelBtn.addEventListener('click', () => {
+                    editForm.remove();
+                });
+            });
+
+            // Logout functionality
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('isAuthenticated');
+                showPopup('Logged out successfully!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'project.html';
+                }, 1500);
+            });
+        });
+
+        // Popup message functionality
+        function showPopup(message, type = 'success') {
+            const popup = document.createElement('div');
+            popup.className = `popup-message ${type}`;
+            popup.textContent = message;
+            document.body.appendChild(popup);
+
+            setTimeout(() => {
+                popup.classList.add('show');
+            }, 10);
+
+            setTimeout(() => {
+                popup.classList.remove('show');
+                setTimeout(() => {
+                    popup.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Add these functions after the existing JavaScript code
+        // Function to handle payment processing
+        async function processPayment(userId, amount, paymentMethod) {
+            try {
+                const response = await fetch('store_data.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'payment',
+                        userId: userId,
+                        amount: amount,
+                        paymentMethod: paymentMethod,
+                        transactionId: 'TRX' + Date.now() // Generate a unique transaction ID
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    return data.paymentId;
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                console.error('Payment processing error:', error);
+                throw error;
+            }
+        }
+
+        // Function to handle artwork purchase
+        async function purchaseArtwork(userId, artworkId, price) {
+            try {
+                // First process the payment
+                const paymentId = await processPayment(userId, price, 'credit_card');
+                
+                // Then store the purchase
+                const response = await fetch('store_data.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'purchase',
+                        userId: userId,
+                        artworkId: artworkId,
+                        paymentId: paymentId,
+                        price: price
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    // Update the UI to show purchase success
+                    showPopup('Artwork purchased successfully!', 'success');
+                    return data.purchaseId;
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                console.error('Purchase error:', error);
+                showPopup('Error purchasing artwork: ' + error.message, 'error');
+                throw error;
+            }
+        }
+
+        // Function to handle exhibition registration
+        async function registerForExhibition(userId, exhibitionId) {
+            try {
+                const response = await fetch('store_data.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'registration',
+                        userId: userId,
+                        exhibitionId: exhibitionId,
+                        registrationDate: new Date().toISOString()
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    // Update the UI to show registration success
+                    showPopup('Successfully registered for the exhibition!', 'success');
+                    return data.registrationId;
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                showPopup('Error registering for exhibition: ' + error.message, 'error');
+                throw error;
+            }
+        }
+
+        // Add this function to handle buy button clicks
+        function handleBuyButtonClick(artworkId, artworkTitle, price) {
+            // Check if user is logged in
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            if (!currentUser) {
+                // Store pending purchase in localStorage
+                localStorage.setItem('pendingPurchase', JSON.stringify({
+                    artworkId: artworkId,
+                    artworkTitle: artworkTitle,
+                    price: price
+                }));
+                
+                // Redirect to login page
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // User is logged in, proceed with purchase
+            purchaseArtwork(currentUser.id, artworkId, price);
+        }
+        
+        // Update the buy button event listeners
+        document.querySelectorAll('.buy-artwork-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const artworkId = this.getAttribute('data-artwork-id');
+                const artworkTitle = this.getAttribute('data-artwork-title');
+                const price = parseFloat(this.getAttribute('data-price'));
+                
+                handleBuyButtonClick(artworkId, artworkTitle, price);
+            });
+        });
+        
+        // Update the exhibition registration button
+        document.getElementById('registerButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Check if user is logged in
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            if (!currentUser) {
+                // Store pending registration in localStorage
+                const exhibitionId = this.getAttribute('data-exhibition-id');
+                const exhibitionTitle = document.getElementById('eventModalTitle').textContent;
+                
+                localStorage.setItem('pendingRegistration', JSON.stringify({
+                    exhibitionId: exhibitionId,
+                    exhibitionTitle: exhibitionTitle
+                }));
+                
+                // Redirect to login page
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // User is logged in, proceed with registration
+            const button = this;
+            const registrationComplete = document.getElementById('registrationComplete');
+            const eventTitle = document.getElementById('eventModalTitle').textContent;
+            const eventDate = document.getElementById('eventModalDate').textContent;
+            
+            // Show loading state
+            button.disabled = true;
+            button.querySelector('.btn-text').style.display = 'none';
+            button.querySelector('.btn-loading').style.display = 'inline-block';
+            
+            // Get exhibition ID from the modal
+            const exhibitionId = button.getAttribute('data-exhibition-id');
+            
+            // Register for the exhibition
+            registerForExhibition(currentUser.id, exhibitionId)
+                .then(() => {
+                    // Update registration complete message
+                    registrationComplete.querySelector('.event-name').textContent = eventTitle;
+                    registrationComplete.querySelector('.event-date').textContent = eventDate;
+                    
+                    // Hide button and show success message
+                    button.style.display = 'none';
+                    registrationComplete.style.display = 'block';
+                })
+                .catch(error => {
+                    // Reset button state on error
+                    button.disabled = false;
+                    button.querySelector('.btn-text').style.display = 'inline-block';
+                    button.querySelector('.btn-loading').style.display = 'none';
+                });
+        });
+
+        // Show cart modal
+        function showCart() {
+            closeModal();
+            document.getElementById('cart-modal').style.display = 'block';
+        }
+
+        // Go back to cart from checkout
+        function goBackToCart() {
+            // Hide the checkout modal
+            document.getElementById('checkout-modal').style.display = 'none';
+            
+            // Show the cart modal
+            document.getElementById('cart-modal').style.display = 'block';
+            
+            // Update the cart display to ensure it's current
+            updateCart();
+        }
+
+        // Update cart display
+        function updateCart() {
+            const cartItemsElement = document.getElementById('cart-items');
+            const cartCountElement = document.getElementById('cart-count');
+            const cartTotalElement = document.getElementById('cart-total');
+            
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+            
+            // Update cart items list
+            if (cart.length === 0) {
+                cartItemsElement.innerHTML = '<p>Your cart is empty</p>';
+                cartTotalElement.textContent = '0';
+                return;
+            }
+            
+            cartItemsElement.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="cart-item-info">
+                        <h3 class="cart-item-title">${item.title}</h3>
+                        <p class="cart-item-artist">${item.artist}</p>
+                        <p class="cart-item-price">$${(item.price * item.quantity).toLocaleString()}</p>
+                        <p>Quantity: ${item.quantity}</p>
+                    </div>
+                    <span class="remove-item" onclick="removeFromCart(${index})">✕</span>
+                `;
+                
+                cartItemsElement.appendChild(itemElement);
+                total += item.price * item.quantity;
+            });
+            
+            cartTotalElement.textContent = total.toLocaleString();
+        }
+
+        // Complete purchase
+        function completePurchase() {
+            // Check if payment method is selected
+            const selectedPayment = document.querySelector('.payment-method.selected');
+            if (!selectedPayment) {
+                alert('Please select a payment method');
+                return;
+            }
+            
+            // Get form data
+            const fullName = document.getElementById('full-name').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const zip = document.getElementById('zip').value;
+            const country = document.getElementById('country').value;
+            const paymentMethod = selectedPayment.querySelector('span').textContent;
+            
+            // Create order details
+            const orderDetails = document.createElement('div');
+            orderDetails.innerHTML = `
+                <p><strong>Order Number:</strong> #${Math.floor(Math.random() * 1000000)}</p>
+                <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
+                <p><strong>Items:</strong> ${cart.length} artwork(s)</p>
+                <p><strong>Total:</strong> $${document.getElementById('cart-total').textContent}</p>
+                <p><strong>Shipping Address:</strong> ${address}, ${city}, ${zip}, ${country}</p>
+                <p><strong>Payment Method:</strong> ${paymentMethod}</p>
+            `;
+            
+            // Display order details
+            document.getElementById('order-details').innerHTML = '';
+            document.getElementById('order-details').appendChild(orderDetails);
+            
+            // Hide checkout modal and show confirmation modal
+            document.getElementById('checkout-modal').style.display = 'none';
+            document.getElementById('confirmation-modal').style.display = 'block';
+            
+            // Clear cart
+            cart = [];
+            updateCart();
+        }
+
+        // Return to home page
+        function returnToHome() {
+            // Close the confirmation modal
+            document.getElementById('confirmation-modal').style.display = 'none';
+            
+            // Redirect to home page
+            window.location.href = 'project.html';
+        }
+    </script>
+
+    <!-- Event Details Modal -->
+    <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="eventModalLabel">Event Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <img id="eventModalImage" src="" alt="Event Image" class="img-fluid rounded">
+              </div>
+              <div class="col-md-6">
+                <h3 id="eventModalTitle" class="mb-3"></h3>
+                <p class="text-muted mb-2"><i class="fas fa-calendar-alt mr-2"></i> <span id="eventModalDate"></span></p>
+                <hr>
+                <h5>About the Event</h5>
+                <p id="eventModalDescription"></p>
+                <div class="mt-4">
+                  <h5>Event Highlights</h5>
+                  <ul id="eventModalHighlights">
+                    <li>Exclusive preview of artworks</li>
+                    <li>Meet and greet with featured artists</li>
+                    <li>Interactive workshops and demonstrations</li>
+                    <li>Special discounts on art purchases</li>
+                  </ul>
+                </div>
+                <div class="mt-4">
+                  <button id="registerButton" class="custom-button register-btn">
+                    <span class="btn-text">Register</span>
+                    <span class="btn-loading" style="display: none;">
+                      <i class="fas fa-spinner fa-spin"></i>
+                    </span>
+                  </button>
+                  <div id="registrationComplete" class="alert alert-success mt-3" style="display: none;">
+                    <i class="fas fa-check-circle"></i> 
+                    <div class="registration-message">
+                        <p>Registration completed successfully for:</p>
+                        <h5 class="event-name"></h5>
+                        <p class="event-date"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signupForm">
+                        <div class="mb-3">
+                            <label for="signupName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="signupName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="signupEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="signupEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="signupPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="signupPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,471 @@
+/* Animations and Effects */
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Slide Up Animation */
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Slide In From Left */
+@keyframes slideInLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Slide In From Right */
+@keyframes slideInRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Scale Up Animation */
+@keyframes scaleUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Rotate Animation */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+/* Parallax Effect */
+@keyframes parallax {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+/* 3D Flip Animation */
+@keyframes flip {
+    0% { transform: perspective(400px) rotateY(0); }
+    100% { transform: perspective(400px) rotateY(360deg); }
+}
+
+/* Gradient Text Animation */
+@keyframes gradientText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Floating Animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Glowing Effect */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(208, 178, 0, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(208, 178, 0, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(208, 178, 0, 0.5); }
+}
+
+/* Apply animations to elements */
+
+/* Navbar animations */
+.navbar {
+    animation: slideDown 0.5s ease-out;
+}
+
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #d0b200;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Banner animations */
+.banner-heading {
+    animation: slideUp 1s ease-out;
+}
+
+.banner-caption {
+    animation: fadeIn 1.5s ease-out;
+}
+
+.custom-outline-button {
+    animation: scaleUp 0.5s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-outline-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Card animations */
+.car-box {
+    animation: fadeIn 0.8s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.car-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+/* Event animations */
+.event {
+    animation: slideInLeft 0.8s ease-out;
+    transition: transform 0.3s ease;
+}
+
+.event:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+/* Gallery animations */
+.img1 {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.img1:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s ease;
+}
+
+/* Swiper animations */
+.swiper-slide {
+    animation: scaleUp 0.5s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.swiper-slide:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+/* Footer animations */
+.footer-widget {
+    animation: fadeIn 1s ease-out;
+}
+
+.footer-social-icon a {
+    transition: transform 0.3s ease;
+}
+
+.footer-social-icon a:hover {
+    transform: translateY(-5px);
+}
+
+/* Back to top button animation */
+.back-to-top {
+    animation: bounce 2s infinite;
+    transition: transform 0.3s ease;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* Modal animations */
+.modal-content {
+    animation: scaleUp 0.3s ease-out;
+}
+
+/* Button hover effects */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Image hover effects */
+.artist-card img {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.artist-card:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* Loading animation */
+@keyframes loading {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: loading 1.5s infinite;
+}
+
+/* Scroll animations */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover effects for interactive elements */
+.interactive-element {
+    transition: all 0.3s ease;
+}
+
+.interactive-element:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Text highlight effect */
+.highlight-text {
+    position: relative;
+    display: inline-block;
+}
+
+.highlight-text::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #d0b200;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.highlight-text:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 1s ease forwards;
+}
+
+.slide-up {
+    animation: slideUp 0.8s ease forwards;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.8s ease forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.8s ease forwards;
+}
+
+.scale-up {
+    animation: scaleUp 0.8s ease forwards;
+}
+
+.rotate {
+    animation: rotate 2s linear infinite;
+}
+
+.pulse {
+    animation: pulse 2s ease infinite;
+}
+
+.shake {
+    animation: shake 0.8s ease;
+}
+
+.bounce {
+    animation: bounce 2s ease infinite;
+}
+
+/* Parallax effect */
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* 3D flip effect */
+.flip-card {
+    perspective: 1000px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover {
+    transform: rotateY(180deg);
+}
+
+/* Gradient text effect */
+.gradient-text {
+    background: linear-gradient(45deg, #d0b200, #ffcc00, #d0b200);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientText 3s ease infinite;
+}
+
+/* Floating effect */
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Glowing effect */
+.glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* Scroll Reveal Animation */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover Effects */
+.navbar-brand:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #d0b200 !important;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+.custom-outline-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.car-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.event:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.event img:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s ease;
+}
+
+.btn8:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.swiper-slide:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.swiper-slide img:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s ease;
+}
+
+.custom-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.footer-widget:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+.footer-social-icon a:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* Modal Animation */
+.modal.fade .modal-dialog {
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
+} 

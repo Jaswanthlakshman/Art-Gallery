@@ -1,0 +1,2981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery - Artists</title>
+    <style>
+    body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background: url('https://t4.ftcdn.net/jpg/06/10/68/45/360_F_610684596_sjltjOPiM21qWLo6IJOkr5wZeDdN1g8p.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    min-height: 100vh;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8); 
+    z-index: -1; 
+}
+        header {
+            color:#d0b200;
+            font-family:cursive;
+            padding-top:15px;
+            padding-bottom: 20px;
+            font-size:20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .main-nav {
+            position: absolute;
+            right: 80px;
+            top: 20px;
+        }
+        
+        .main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .main-nav a {
+            color: #d0b200;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .main-nav a:hover {
+            background-color: rgba(208, 178, 0, 0.2);
+        }
+        
+        .cart-icon {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .cart-count {
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        
+        .artists-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+        }
+        
+        .artist-card {
+            padding:40px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 200px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .artist-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .artist-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 4px solid #49a5e1;
+        }
+        
+        .artist-profile {
+            display: none;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 30px;
+            border: 5px solid #3498db;
+        }
+        
+        .profile-nav {
+            background-color: #d0b200;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .profile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .profile-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .profile-nav a:hover, .profile-nav a.active {
+            background-color: #3498db;
+        }
+        
+        .tab-content {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .arts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .art-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .art-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .art-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .art-info {
+            padding: 15px;
+        }
+        
+        .art-info h3 {
+            margin-top: 0;
+        }
+        
+        .art-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-view {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .btn-buy {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+        }
+        
+        .back-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .price-tag {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.2em;
+        }
+        
+        .size-info {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        /* Art Detail Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            margin: 3% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 1200px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .close-btn {
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .close-btn:hover {
+            color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+            transform: rotate(90deg);
+        }
+        
+        .art-detail-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .art-detail-images {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .main-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .thumbnail {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+        
+        .thumbnail:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: #d0b200;
+        }
+        
+        .thumbnail.active {
+            border-color: #d0b200;
+            box-shadow: 0 5px 15px rgba(208, 178, 0, 0.3);
+        }
+        
+        .art-detail-info {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .art-detail-title {
+            font-size: 2.2em;
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .art-detail-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #d0b200;
+        }
+        
+        .art-detail-artist {
+            font-size: 1.3em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .art-detail-artist::before {
+            content: '👨‍🎨';
+            font-size: 1.2em;
+        }
+        
+        .art-detail-price {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #d0b200;
+            margin: 20px 0;
+            padding: 15px 0;
+            border-bottom: 2px solid rgba(208, 178, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .art-detail-price::before {
+            content: '💰';
+            font-size: 1.2em;
+        }
+        
+        .art-detail-meta {
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(208, 178, 0, 0.05);
+            border-radius: 10px;
+        }
+        
+        .art-detail-meta p {
+            margin: 12px 0;
+            color: #34495e;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1em;
+        }
+        
+        .art-detail-meta p::before {
+            content: '•';
+            color: #d0b200;
+            font-size: 1.5em;
+        }
+        
+        .art-detail-description {
+            line-height: 1.8;
+            margin: 25px 0;
+            color: #34495e;
+            font-size: 1.1em;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #d0b200;
+        }
+        
+        .detail-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: flex-end;
+        }
+        
+        .btn-detail-buy, .btn-detail-close {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            min-width: 140px;
+            text-align: center;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-detail-buy {
+            background: linear-gradient(135deg, #d0b200 0%, #b39600 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(208, 178, 0, 0.3);
+        }
+        
+        .btn-detail-buy::before {
+            content: '🛒';
+            font-size: 1.2em;
+        }
+        
+        .btn-detail-close {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .btn-detail-buy:hover, .btn-detail-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 992px) {
+            .art-detail-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-image {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .modal-content {
+                padding: 20px;
+                margin: 5% auto;
+            }
+            
+            .main-image {
+                height: 300px;
+            }
+            
+            .thumbnail {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .detail-actions {
+                flex-direction: column;
+            }
+            
+            .btn-detail-buy, .btn-detail-close {
+                width: 100%;
+            }
+        }
+        
+        .wall-preview-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .wall-preview-title {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .wall-preview {
+            width: 100%;
+            height: 300px;
+            background-color: #e0e0e0;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .wall-preview-image {
+            position: absolute;
+            max-width: 60%;
+            max-height: 60%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 10px solid white;
+            transition: all 0.3s ease;
+            object-fit: contain;
+            display: block;
+            margin: auto;
+        }
+        
+        .size-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .size-option {
+            padding: 8px 15px;
+            background-color: #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .size-option:hover {
+            background-color: #ccc;
+            transform: translateY(-2px);
+        }
+        
+        .size-option.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .cart-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow: auto;
+        }
+        
+        .cart-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 800px;
+            position: relative;
+        }
+        
+        .cart-items {
+            margin: 20px 0;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            gap: 20px;
+        }
+        
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .cart-item-title {
+            font-weight: bold;
+            margin: 0 0 5px 0;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+        
+        .cart-item-artist {
+            color: #7f8c8d;
+            margin: 5px 0;
+            font-style: italic;
+        }
+        
+        .cart-item-price {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+        
+        .remove-item {
+            color: #e74c3c;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .remove-item:hover {
+            background-color: #fde8e8;
+        }
+        
+        .cart-total {
+            text-align: right;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn-cart-close {
+            background-color: #7f8c8d;
+            color: white;
+        }
+        
+        .btn-checkout {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        /* Checkout Modal Styles */
+        .checkout-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow: auto;
+        }
+        
+        .checkout-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .checkout-form {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: grid;
+            gap: 5px;
+        }
+        
+        .form-group label {
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .payment-methods {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .payment-method.selected {
+            border-color: #3498db;
+            background-color: #f0f8ff;
+        }
+        
+        .payment-method img {
+            width: 40px;
+            margin-right: 10px;
+        }
+        
+        .checkout-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        /* Order Confirmation Modal */
+        .confirmation-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow: auto;
+        }
+        
+        .confirmation-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+            text-align: center;
+        }
+        
+        .confirmation-icon {
+            font-size: 60px;
+            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation-message {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation-details {
+            text-align: left;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .confirmation-actions {
+            margin-top: 20px;
+        }
+        
+        .btn-continue {
+            background-color: #3498db;
+            color: white;
+        }
+        /* Order Confirmation Styles */
+.order-summary {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.order-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.order-items-table th, .order-items-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-items-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.order-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.order-totals {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.order-total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.order-total-row.grand-total {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #2c3e50;
+}
+
+.shipping-info, .payment-info, .delivery-info {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #eee;
+}
+
+.shipping-info h3, .payment-info h3, .delivery-info h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.btn-print {
+    background-color: #3498db;
+    color: white;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .confirmation-content, .confirmation-content * {
+        visibility: visible;
+    }
+    .confirmation-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: none;
+        padding: 20px;
+        margin: 0;
+    }
+    .confirmation-details {
+        max-height: none;
+        overflow: visible;
+    }
+    .order-summary {
+        page-break-inside: avoid;
+    }
+    .order-items-table {
+        width: 100%;
+        font-size: 12px;
+    }
+    .order-item-image {
+        width: 50px;
+        height: 50px;
+    }
+    .btn-print, .close-btn {
+        display: none;
+    }
+    @page {
+        size: A4;
+        margin: 10mm;
+    }
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.auth-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 4px;
+    color: white;
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+.auth-alert.success {
+    background-color: #2ecc71;
+}
+
+.auth-alert.error {
+    background-color: #e74c3c;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.art-price {
+    color: #e74c3c;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.art-price::before {
+    content: '💰';
+    font-size: 1.2em;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Art Gallery</h1>
+        <div class="cart-icon" onclick="showCart()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-count" id="cart-count">0</span>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="project.html">Home</a></li>
+                <li><a href="profile.html" id="profile-link">My Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="artists-list" class="artists-container">
+        <div class="artist-card" onclick="showArtistProfile('van-gogh')">
+            <img src="https://medias.artmajeur.com/hd/10739923_van-gogh-gabrieleionfrida-hight.jpg?v=1739398642" alt="Vincent van Gogh">
+            <h3>Vincent van Gogh</h3>
+            <p>Post-Impressionist</p>
+        </div>
+        
+        <div class="artist-card" onclick="showArtistProfile('monet')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Claude_Monet_1899_Nadar_crop.jpg" alt="Claude Monet">
+            <h3>Claude Monet</h3>
+            <p>Impressionist</p>
+        </div>
+        
+        <div class="artist-card" onclick="showArtistProfile('picasso')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Pablo_picasso_1.jpg" alt="Pablo Picasso">
+            <h3>Pablo Picasso</h3>
+            <p>Cubist</p>
+        </div>
+        
+        <div class="artist-card" onclick="showArtistProfile('kahlo')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg" alt="Frida Kahlo">
+            <h3>Frida Kahlo</h3>
+            <p>Surrealist</p>
+        </div>
+    </div>
+
+    <!-- Van Gogh Profile -->
+    <div id="van-gogh-profile" class="artist-profile">
+        <div class="profile-header">
+            <img src="https://medias.artmajeur.com/hd/10739923_van-gogh-gabrieleionfrida-hight.jpg?v=1739398642" alt="Vincent van Gogh">
+            <div>
+                <h1>Vincent van Gogh</h1>
+                <p>Post-Impressionist Painter</p>
+                <p>1853 - 1890</p>
+            </div>
+        </div>
+        
+        <nav class="profile-nav">
+            <ul>
+                <li><a href="#" class="active" onclick="showTab('van-gogh-bio')">Biography</a></li>
+                <li><a href="#" onclick="showTab('van-gogh-arts')">Arts</a></li>
+            </ul>
+        </nav>
+        
+        <div id="van-gogh-bio" class="tab-content active">
+            <h2>Biography</h2>
+            <p>Vincent Willem van Gogh was a Dutch Post-Impressionist painter who is among the most famous and influential figures in the history of Western art. In just over a decade he created approximately 2100 artworks, including around 860 oil paintings, most of them in the last two years of his life.</p>
+            <p>Van Gogh was born into an upper-middle-class family. As a young man he worked as an art dealer, often traveling, but became depressed after he was transferred to London. He turned to religion and spent time as a Protestant missionary in southern Belgium.</p>
+            <p>His depression persisted, and on 27 July 1890, Van Gogh is believed to have shot himself in the chest with a revolver, dying from his injuries two days later.</p>
+        </div>
+        
+        <div id="van-gogh-arts" class="tab-content">
+            <h2>Artworks</h2>
+            <div class="arts-grid">
+                <div class="art-item">
+                    <img src="https://res.cloudinary.com/jerrick/image/upload/v1712550554/6613729a3ce477001ccec201.jpg" alt="Starry Night">
+                    <div class="art-info">
+                        <h3>The Starry Night</h3>
+                        <p class="price-tag">$100,000,000</p>
+                        <p class="size-info">73.7 cm × 92.1 cm (29 in × 36 1/4 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('van-gogh', 'starry-night')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Vincent van Gogh', 'The Starry Night', '100000000', 'https://res.cloudinary.com/jerrick/image/upload/v1712550554/6613729a3ce477001ccec201.jpg')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://cdn.overstockart.com/blog/wp-content/uploads/2012/05/sun.gif" alt="Sunflowers">
+                    <div class="art-info">
+                        <h3>Sunflowers</h3>
+                        <p class="price-tag">$85,000,000</p>
+                        <p class="size-info">92.1 cm × 73 cm (36.2 in × 28.7 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('van-gogh', 'sunflowers')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Vincent van Gogh', 'Sunflowers', '85000000', 'https://cdn.overstockart.com/blog/wp-content/uploads/2012/05/sun.gif')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPYFXgQA3Tjj3ctRjF0gQgTF-vNtVMaxygPg&s" alt="Self-Portrait">
+                    <div class="art-info">
+                        <h3>Self-Portrait</h3>
+                        <p class="price-tag">$75,000,000</p>
+                        <p class="size-info">65 cm × 54 cm (25.6 in × 21.3 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('van-gogh', 'self-portrait')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Vincent van Gogh', 'Self-Portrait', '75000000', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPYFXgQA3Tjj3ctRjF0gQgTF-vNtVMaxygPg&s')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ3C775Tt0llxZCI0Fj__ABscCFP0z7jyrXg&s" alt="The Potato Eaters">
+                    <div class="art-info">
+                        <h3>The Potato Eaters</h3>
+                        <p class="price-tag">$65,000,000</p>
+                        <p class="size-info">82 cm × 114 cm (32 in × 45 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('van-gogh', 'potato-eaters')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Vincent van Gogh', 'The Potato Eaters', '65000000', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ3C775Tt0llxZCI0Fj__ABscCFP0z7jyrXg&s')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="back-btn" onclick="hideArtistProfile()">Back to Artists</button>
+    </div>
+
+    <!-- Monet Profile -->
+    <div id="monet-profile" class="artist-profile">
+        <div class="profile-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Claude_Monet_1899_Nadar_crop.jpg" alt="Claude Monet">
+            <div>
+                <h1>Claude Monet</h1>
+                <p>Impressionist Painter</p>
+                <p>1840 - 1926</p>
+            </div>
+        </div>
+        
+        <nav class="profile-nav">
+            <ul>
+                <li><a href="#" class="active" onclick="showTab('monet-bio')">Biography</a></li>
+                <li><a href="#" onclick="showTab('monet-arts')">Arts</a></li>
+            </ul>
+        </nav>
+        
+        <div id="monet-bio" class="tab-content active">
+            <h2>Biography</h2>
+            <p>Oscar-Claude Monet was a French painter and founder of impressionist painting who is seen as a key precursor to modernism, especially in his attempts to paint nature as he perceived it. During his long career, he was the most consistent and prolific practitioner of impressionism's philosophy of expressing one's perceptions before nature, especially as applied to plein air (outdoor) landscape painting.</p>
+            <p>Monet's ambition of documenting the French countryside led him to adopt a method of painting the same scene many times in order to capture the changing of light and the passing of the seasons. From 1883, Monet lived in Giverny, where he purchased a house and property and began a vast landscaping project which included lily ponds that would become the subjects of his best-known works.</p>
+        </div>
+        
+        <div id="monet-arts" class="tab-content">
+            <h2>Artworks</h2>
+            <div class="arts-grid">
+                <div class="art-item">
+                    <img src="https://smarthistory.org/wp-content/uploads/2018/12/MonetImpressionSunriseDetail.jpg" alt="Impression, Sunrise">
+                    <div class="art-info">
+                        <h3>Impression, Sunrise</h3>
+                        <p class="price-tag">$50,000,000</p>
+                        <p class="size-info">48 cm × 63 cm (18.9 in × 24.8 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('monet', 'impression-sunrise')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Claude Monet', 'Impression, Sunrise', '50000000', 'https://shorturl.at/Uer7M')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQdCmn0rJvE1PBT_71FMtA0rQWU7fnfYoamQ&s" alt="Water Lilies">
+                    <div class="art-info">
+                        <h3>Water Lilies</h3>
+                        <p class="price-tag">$65,000,000</p>
+                        <p class="size-info">200 cm × 200 cm (78.7 in × 78.7 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('monet', 'water-lilies')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Claude Monet', 'Water Lilies', '65000000', 'ihttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQdCmn0rJvE1PBT_71FMtA0rQWU7fnfYoamQ&s')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7NNRUNDH4j9jL4eEPRfKBEpz8kZmZvwxwMg&s" alt="Woman with a Parasol">
+                    <div class="art-info">
+                        <h3>Woman with a Parasol</h3>
+                        <p class="price-tag">$45,000,000</p>
+                        <p class="size-info">100 cm × 81 cm (39.4 in × 31.9 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('monet', 'woman-parasol')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Claude Monet', 'Woman with a Parasol', '45000000', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7NNRUNDH4j9jL4eEPRfKBEpz8kZmZvwxwMg&s')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8riugaYEpWcdxQFQAo5dpMtWq_TXfDTl9oA&s" alt="Poppies">
+                    <div class="art-info">
+                        <h3>Poppies</h3>
+                        <p class="price-tag">$55,000,000</p>
+                        <p class="size-info">50 cm × 65 cm (20 in × 26 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('monet', 'poppies')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Claude Monet', 'Poppies', '55000000', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8riugaYEpWcdxQFQAo5dpMtWq_TXfDTl9oA&s')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="back-btn" onclick="hideArtistProfile()">Back to Artists</button>
+    </div>
+
+    <!-- Picasso Profile -->
+    <div id="picasso-profile" class="artist-profile">
+        <div class="profile-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Pablo_picasso_1.jpg" alt="Pablo Picasso">
+            <div>
+                <h1>Pablo Picasso</h1>
+                <p>Cubist Painter</p>
+                <p>1881 - 1973</p>
+            </div>
+        </div>
+        
+        <nav class="profile-nav">
+            <ul>
+                <li><a href="#" class="active" onclick="showTab('picasso-bio')">Biography</a></li>
+                <li><a href="#" onclick="showTab('picasso-arts')">Arts</a></li>
+            </ul>
+        </nav>
+        
+        <div id="picasso-bio" class="tab-content active">
+            <h2>Biography</h2>
+            <p>Pablo Ruiz Picasso was a Spanish painter, sculptor, printmaker, ceramicist and theatre designer who spent most of his adult life in France. Regarded as one of the most influential artists of the 20th century, he is known for co-founding the Cubist movement, the invention of constructed sculpture, the co-invention of collage, and for the wide variety of styles that he helped develop and explore.</p>
+            <p>Picasso demonstrated extraordinary artistic talent in his early years, painting in a naturalistic manner through his childhood and adolescence. During the first decade of the 20th century, his style changed as he experimented with different theories, techniques, and ideas. After 1906, the Fauvist work of the slightly older artist Henri Matisse motivated Picasso to explore more radical styles, beginning a fruitful rivalry between the two artists, who subsequently were often paired by critics as the leaders of modern art.</p>
+        </div>
+        
+        <div id="picasso-arts" class="tab-content">
+            <h2>Artworks</h2>
+            <div class="arts-grid">
+                <div class="art-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/7/74/PicassoGuernica.jpg" alt="Guernica">
+                    <div class="art-info">
+                        <h3>Guernica</h3>
+                        <p class="price-tag">$200,000,000</p>
+                        <p class="size-info">349 cm × 776 cm (137.4 in × 305.5 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('picasso', 'guernica')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Pablo Picasso', 'Guernica', '200000000', 'https://upload.wikimedia.org/wikipedia/en/7/74/PicassoGuernica.jpg')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/4/4c/Les_Demoiselles_d%27Avignon.jpg" alt="Les Demoiselles d'Avignon">
+                    <div class="art-info">
+                        <h3>Les Demoiselles d'Avignon</h3>
+                        <p class="price-tag">$150,000,000</p>
+                        <p class="size-info">243.9 cm × 233.7 cm (96 in × 92 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('picasso', 'demoiselles')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Pablo Picasso', 'Les Demoiselles d\'Avignon', '150000000', 'https://upload.wikimedia.org/wikipedia/en/4/4c/Les_Demoiselles_d%27Avignon.jpg')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW_c0824mhi3K6eirsuP2aQAV6juzW0N4nYA&s" alt="The Weeping Woman">
+                    <div class="art-info">
+                        <h3>The Weeping Woman</h3>
+                        <p class="price-tag">$75,000,000</p>
+                        <p class="size-info">60 cm × 49 cm (23.6 in × 19.3 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('picasso', 'weeping-woman')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Pablo Picasso', 'The Weeping Woman', '75000000', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW_c0824mhi3K6eirsuP2aQAV6juzW0N4nYA&s')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://i.etsystatic.com/5717674/r/il/d663bb/1053513285/il_570xN.1053513285_p2mg.jpg" alt="La Vie">
+                    <div class="art-info">
+                        <h3>La Vie</h3>
+                        <p class="price-tag">$90,000,000</p>
+                        <p class="size-info">196.5 cm × 129.2 cm (77.4 in × 50.9 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('picasso', 'la-vie')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Pablo Picasso', 'La Vie', '90000000', 'https://i.etsystatic.com/5717674/r/il/d663bb/1053513285/il_570xN.1053513285_p2mg.jpg')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="back-btn" onclick="hideArtistProfile()">Back to Artists</button>
+    </div>
+
+    <!-- Kahlo Profile -->
+    <div id="kahlo-profile" class="artist-profile">
+        <div class="profile-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg" alt="Frida Kahlo">
+            <div>
+                <h1>Frida Kahlo</h1>
+                <p>Surrealist Painter</p>
+                <p>1907 - 1954</p>
+            </div>
+        </div>
+        
+        <nav class="profile-nav">
+            <ul>
+                <li><a href="#" class="active" onclick="showTab('kahlo-bio')">Biography</a></li>
+                <li><a href="#" onclick="showTab('kahlo-arts')">Arts</a></li>
+            </ul>
+        </nav>
+        
+        <div id="kahlo-bio" class="tab-content active">
+            <h2>Biography</h2>
+            <p>Magdalena Carmen Frida Kahlo y Calderón was a Mexican painter known for her many portraits, self-portraits, and works inspired by the nature and artifacts of Mexico. Inspired by the country's popular culture, she employed a naïve folk art style to explore questions of identity, postcolonialism, gender, class, and race in Mexican society.</p>
+            <p>Kahlo's paintings often had strong autobiographical elements and mixed realism with fantasy. In addition to belonging to the post-revolutionary Mexicayotl movement, which sought to define a Mexican identity, Kahlo has been described as a surrealist or magical realist. She is known for painting about her experience of chronic pain.</p>
+            <p>Kahlo had a volatile marriage with the famous Mexican artist Diego Rivera. She suffered lifelong health problems, many of which stemmed from a traffic accident she experienced as a teenager. These issues are reflected in her works, more than half of which are self-portraits of one sort or another.</p>
+        </div>
+        
+        <div id="kahlo-arts" class="tab-content">
+            <h2>Artworks</h2>
+            <div class="arts-grid">
+                <div class="art-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/d/d9/Frida_Kahlo_painting_Henry_Ford_Hospital_1932.jpeg" alt="Henry Ford Hospital">
+                    <div class="art-info">
+                        <h3>Henry Ford Hospital</h3>
+                        <p class="price-tag">$25,000,000</p>
+                        <p class="size-info">30.5 cm × 38 cm (12 in × 15 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('kahlo', 'henry-ford')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Frida Kahlo', 'Henry Ford Hospital', '25000000', 'https://shorturl.at/8xwqT')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://d3k8cp7ga1ip8x.cloudfront.net/media/meural/254/vz00fol17e1rdb7.optimized.thumb.jpg" alt="The Two Fridas">
+                    <div class="art-info">
+                        <h3>The Two Fridas</h3>
+                        <p class="price-tag">$35,000,000</p>
+                        <p class="size-info">173.5 cm × 173 cm (68.3 in × 68 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('kahlo', 'two-fridas')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Frida Kahlo', 'The Two Fridas', '35000000', 'https://d3k8cp7ga1ip8x.cloudfront.net/media/meural/254/vz00fol17e1rdb7.optimized.thumb.jpg')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://www.fridakahlo.org/assets/img/paintings/self-portrait-with-necklace-of-thorns.jpg" alt="Self-Portrait with Thorn Necklace">
+                    <div class="art-info">
+                        <h3>Self-Portrait with Thorn Necklace</h3>
+                        <p class="price-tag">$30,000,000</p>
+                        <p class="size-info">61.25 cm × 47 cm (24.1 in × 18.5 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('kahlo', 'thorn-necklace')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Frida Kahlo', 'Self-Portrait with Thorn Necklace', '30000000', 'https://www.fridakahlo.org/assets/img/paintings/self-portrait-with-necklace-of-thorns.jpg')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiELa9lAfeAVrMFDQOX1mImDD4V8Ssu-7Wuw&s" alt="The Broken Column">
+                    <div class="art-info">
+                        <h3>The Broken Column</h3>
+                        <p class="price-tag">$40,000,000</p>
+                        <p class="size-info">40 cm × 30.7 cm (15.7 in × 12.1 in)</p>
+                        <div class="art-actions">
+                            <button class="btn btn-view" onclick="showArtDetail('kahlo', 'broken-column')">View Details</button>
+                            <button class="btn btn-buy" onclick="addToCart('Frida Kahlo', 'The Broken Column', '40000000', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiELa9lAfeAVrMFDQOX1mImDD4V8Ssu-7Wuw&s')">Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="back-btn" onclick="hideArtistProfile()">Back to Artists</button>
+    </div>
+
+    <!-- Art Detail Modals -->
+    <!-- Van Gogh - Starry Night -->
+    <div id="starry-night-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="starry-night-main" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="The Starry Night" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHslt2YcMhORuYx4NAxzRlWPiLI1-T4mPhZA&s" alt="Front view" class="thumbnail active" onclick="changeMainImage('starry-night-main', this)">
+                        <img src="https://www.artble.com/imgs/e/d/4/45975/starry_night.jpg" alt="Detail view" class="thumbnail" onclick="changeMainImage('starry-night-main', this)">
+                        <img src="https://www.possen.com/cdn/shop/files/Fancy_475.jpg?v=1721633446" alt="Angle view" class="thumbnail" onclick="changeMainImage('starry-night-main', this)">
+                    </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHslt2YcMhORuYx4NAxzRlWPiLI1-T4mPhZA&s" alt="Starry Night on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">The Starry Night</h2>
+                    <p class="art-detail-artist">by Vincent van Gogh</p>
+                    <p class="art-detail-price">$100,000,000</p>
+                    
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1889</p>
+                        <p><strong>Medium:</strong> Oil on canvas</p>
+                        <p><strong>Dimensions:</strong> 73.7 cm × 92.1 cm (29 in × 36 1/4 in)</p>
+                        <p><strong>Location:</strong> Museum of Modern Art, New York</p>
+                        <p><strong>Style:</strong> Post-Impressionism</p>
+                    </div>
+                    
+                    <div class="art-detail-description">
+                        <p>The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an imaginary village.</p>
+                        <p>The painting has been in the permanent collection of the Museum of Modern Art in New York City since 1941, acquired through the Lillie P. Bliss Bequest. It is regarded as among Van Gogh's finest works and is one of the most recognized paintings in the history of Western culture.</p>
+                        <p>The painting's striking blues and yellows and the dreamy, swirling atmosphere have intrigued art lovers for decades. Van Gogh's night sky is a field of roiling energy. Below the exploding stars, the village is a place of quiet order.</p>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Vincent van Gogh', 'The Starry Night', '100000000', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sunflowers Modal -->
+    <div id="sunflowers-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="sunflowers-main" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Vincent_Willem_van_Gogh_127.jpg/1280px-Vincent_Willem_van_Gogh_127.jpg" alt="Sunflowers" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Vincent_Willem_van_Gogh_127.jpg/1280px-Vincent_Willem_van_Gogh_127.jpg" alt="Front view" class="thumbnail active" onclick="changeMainImage('sunflowers-main', this)">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9QnUD979Z6GpBQYKnllizc5jHvtmzBFTIYA3wSG7EsLkm4SmFtQ3ogsuAjuPV-fyBMzQ&usqp=CAU" alt="Detail view" class="thumbnail" onclick="changeMainImage('sunflowers-main', this)">
+                        <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/sunflower-field-van-gogh-david-pyatt.jpg" alt="Angle view" class="thumbnail" onclick="changeMainImage('sunflowers-main', this)">
+                    </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Vincent_Willem_van_Gogh_127.jpg/800px-Vincent_Willem_van_Gogh_127.jpg" alt="Sunflowers on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">Sunflowers</h2>
+                    <p class="art-detail-artist">by Vincent van Gogh</p>
+                    <p class="art-detail-price">$85,000,000</p>
+                    
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1888</p>
+                        <p><strong>Medium:</strong> Oil on canvas</p>
+                        <p><strong>Dimensions:</strong> 92.1 cm × 73 cm (36.2 in × 28.7 in)</p>
+                        <p><strong>Location:</strong> National Gallery, London</p>
+                        <p><strong>Style:</strong> Post-Impressionism</p>
+                    </div>
+                    
+                    <div class="art-detail-description">
+                        <p>Sunflowers is the title of two series of still life paintings by Vincent van Gogh. The first series, executed in Paris in 1887, depicts the flowers lying on the ground. The second set, created a year later in Arles, shows a bouquet of sunflowers in a vase.</p>
+                        <p>Van Gogh's sunflowers were painted to decorate the Yellow House in Arles in preparation for his friend Paul Gauguin's visit. The paintings show sunflowers in all stages of life, from full bloom to withering. The vibrant yellow palette reflects Van Gogh's fascination with color symbolism.</p>
+                        <p>These paintings are among Van Gogh's most famous and are frequently reproduced. They demonstrate his innovative use of thick brushstrokes (impasto) and his bold, expressive color choices.</p>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Vincent van Gogh', 'Sunflowers', '85000000', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Vincent_Willem_van_Gogh_127.jpg/1280px-Vincent_Willem_van_Gogh_127.jpg')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Self-Portrait Modal -->
+    <div id="self-portrait-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="self-portrait-main" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg/1280px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg" alt="Self-Portrait" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://www.dailyartmagazine.com/wp-content/uploads/2020/05/Vincent_van_Gogh_-_s0273V1962_-_Van_Gogh_Museum.jpg" alt="Front view" class="thumbnail active" onclick="changeMainImage('self-portrait-main', this)">
+                        <img src="https://www.literarytraveler.com/wp-content/uploads/2013/05/Vincent_van_Gogh_Self_Portrait_1887_ChicagoArtInstitute.jpg" alt="Detail view" class="thumbnail" onclick="changeMainImage('self-portrait-main', this)">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQelqutKw4FpC4mDQ7Nn41I5sxhjp7aEti0jA&s" alt="Alternate self-portrait" class="thumbnail" onclick="changeMainImage('self-portrait-main', this)">
+                    </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://www.dailyartmagazine.com/wp-content/uploads/2020/05/Vincent_van_Gogh_-_s0273V1962_-_Van_Gogh_Museum.jpg" alt="Self-Portrait on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">Self-Portrait</h2>
+                    <p class="art-detail-artist">by Vincent van Gogh</p>
+                    <p class="art-detail-price">$75,000,000</p>
+                    
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1889</p>
+                        <p><strong>Medium:</strong> Oil on canvas</p>
+                        <p><strong>Dimensions:</strong> 65 cm × 54 cm (25.6 in × 21.3 in)</p>
+                        <p><strong>Location:</strong> Musée d'Orsay, Paris</p>
+                        <p><strong>Style:</strong> Post-Impressionism</p>
+                    </div>
+                    
+                    <div class="art-detail-description">
+                        <p>Vincent van Gogh created more than 30 self-portraits between 1886 and 1889. His collection of self-portraits places him among the most prolific self-portraitists of all time. This particular self-portrait was painted in September 1889, shortly after he left the hospital in Arles.</p>
+                        <p>The painting is notable for its striking color contrasts between the blue-green background and the orange-red tones of Van Gogh's hair and beard. His piercing gaze and the intensity of expression reveal his psychological state during this turbulent period of his life.</p>
+                        <p>Van Gogh's self-portraits were often created as studies of his own psychological condition and as exercises in technique. He couldn't afford models, so he painted himself as a form of practice and self-examination.</p>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Vincent van Gogh', 'Self-Portrait', '75000000', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg/1280px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Potato Eaters Modal -->
+    <div id="potato-eaters-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="potato-eaters-main" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Van_Gogh_-_The_Potato_Eaters.png/1200px-Van_Gogh_-_The_Potato_Eaters.png" alt="The Potato Eaters" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://img.wikioo.org/ADC/Art-ImgThumb.nsf/O/A-8YDPYD/$FILE/Vincent-van-gogh-the-potato-eaters-s.Jpg" alt="Front view" class="thumbnail active" onclick="changeMainImage('potato-eaters-main', this)">
+                        <img src="https://www.toperfect.com/pic/Oil%20Painting%20Masterpieces%20on%20Canvas/Vincent%20Van%20Gogh%20Holland_1853-1890/6-The-Potato-Eaters-grey-Vincent-van-Gogh.jpg" alt="Detail view" class="thumbnail" onclick="changeMainImage('potato-eaters-main', this)">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjVNRgHFH_RNtJYTgr5t3WoQPdUTNzCP0PywFEZKyRi1us9uThhbPRnJ3_YkRNjCn_my8tFbKOx6XCAmimvd-5Qn0GxzXKGj1fv7bwh9nJlgXE0h8fn41GuFMc2DJlp4Shbdc3fgiq-Mc6jxE8-59NT449nGrBPZafh2Nh6o1ywABprI2GK8iotexB7/s2880/Vincent-van-Gogh-still-life-with-potatoes-1885.jpg" class="thumbnail" onclick="changeMainImage('potato-eaters-main', this)">
+                                        </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://img.wikioo.org/ADC/Art-ImgThumb.nsf/O/A-8YDPYD/$FILE/Vincent-van-gogh-the-potato-eaters-s.Jpg" alt="The Potato Eaters on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">The Potato Eaters</h2>
+                    <p class="art-detail-artist">by Vincent van Gogh</p>
+                    <p class="art-detail-price">$65,000,000</p>
+                    
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1885</p>
+                        <p><strong>Medium:</strong> Oil on canvas</p>
+                        <p><strong>Dimensions:</strong> 82 cm × 114 cm (32 in × 45 in)</p>
+                        <p><strong>Location:</strong> Van Gogh Museum, Amsterdam</p>
+                        <p><strong>Style:</strong> Realism</p>
+                    </div>
+                    
+                    <div class="art-detail-description">
+                        <p>The Potato Eaters is an oil painting by Vincent van Gogh painted in April 1885 in Nuenen, Netherlands. It is considered one of Van Gogh's first major works and his earliest masterpiece. The painting depicts five peasants sitting around a square table eating potatoes.</p>
+                        <p>Van Gogh wanted to portray the peasants as they really were, deliberately choosing coarse and ugly models who he thought would be natural and unspoiled in his finished work. The painting is dark and somber, reflecting the difficult conditions of peasant life.</p>
+                        <p>This work represents Van Gogh's attempt to establish himself as a painter of rural life and peasant character. It shows his early interest in depicting working-class subjects, which would continue throughout his career.</p>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Vincent van Gogh', 'The Potato Eaters', '65000000', 'https://www.toperfect.com/pic/Oil%20Painting%20Masterpieces%20on%20Canvas/Vincent%20Van%20Gogh%20Holland_1853-1890/6-The-Potato-Eaters-grey-Vincent-van-Gogh.jpg')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="impression-sunrise-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="impression-sunrise-main" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Claude_Monet_-Impression%2C_Sunrise-Google_Art_Project.jpg/1280px-Claude_Monet-Impression%2C_Sunrise-_Google_Art_Project.jpg" alt="Impression, Sunrise" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://www.contemporary-art.org/pic/wiki/masters/Claude-Monet/oil/Impression-Sunrise_m.jpg" alt="Front view" class="thumbnail active" onclick="changeMainImage('impression-sunrise-main', this)">
+                        <img src="https://smarthistory.org/wp-content/uploads/2018/12/MonetImpressionSunriseDetail.jpg" alt="Detail view" class="thumbnail" onclick="changeMainImage('impression-sunrise-main', this)">
+                        <img src="https://i.pinimg.com/originals/dc/ac/71/dcac71a94138858d4a89257693e500b8.jpg" alt="Color-adjusted view" class="thumbnail" onclick="changeMainImage('impression-sunrise-main', this)">
+                    </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://www.contemporary-art.org/pic/wiki/masters/Claude-Monet/oil/Impression-Sunrise_m.jpg" alt="Impression, Sunrise on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">Impression, Sunrise</h2>
+                    <p class="art-detail-artist">by Claude Monet</p>
+                    <p class="art-detail-price">$60,000,000</p>
+                    
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1872</p>
+                        <p><strong>Medium:</strong> Oil on canvas</p>
+                        <p><strong>Dimensions:</strong> 48 cm × 63 cm (19 in × 25 in)</p>
+                        <p><strong>Location:</strong> Musée Marmottan Monet, Paris</p>
+                        <p><strong>Style:</strong> Impressionism</p>
+                    </div>
+                    
+                    <div class="art-detail-description">
+                        <p><em>Impression, Sunrise</em> is the painting that gave the Impressionist movement its name. Depicting the port of Le Havre at sunrise, the work is characterized by loose brushwork and atmospheric effects rather than precise details.</p>
+                        <p>When exhibited in 1874, the painting was criticized for its unfinished appearance. Art critic Louis Leroy derisively used the term "Impressionism" from the painting's title, which the artists later adopted as their movement's name.</p>
+                        <p>The painting demonstrates Monet's revolutionary approach to capturing light and atmosphere. The orange sun reflected in the water creates a vibrant focal point amidst the hazy blue-gray tones of the harbor scene.</p>
+                    </div>
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Claude Monet', 'Impression, Sunrise', '60000000', 'https://www.contemporary-art.org/pic/wiki/masters/Claude-Monet/oil/Impression-Sunrise_m.jpg')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="water-lilies-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="water-lilies-main" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Claude_Monet_-Water_Lilies-Google_Art_Project.jpg/1280px-Claude_Monet-Water_Lilies-_Google_Art_Project.jpg" alt="Water Lilies" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://i0.wp.com/puamsab.princeton.edu/wp-content/uploads/sites/132/2017/04/Giverny_Garden.jpeg?resize=640%2C319" alt="Front view" class="thumbnail active" onclick="changeMainImage('water-lilies-main', this)">
+                        <img src="https://cdn.thecollector.com/wp-content/uploads/2024/06/claude-monet-water-lilies-know-about.jpg" alt="Detail view" class="thumbnail" onclick="changeMainImage('water-lilies-main', this)">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUguLjdtEKQ6GMeajOwfWGqXU0K3bFUtwpaw&s" alt="Alternate Water Lilies" class="thumbnail" onclick="changeMainImage('water-lilies-main', this)">
+                    </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://i0.wp.com/puamsab.princeton.edu/wp-content/uploads/sites/132/2017/04/Giverny_Garden.jpeg?resize=640%2C319" alt="Water Lilies on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">Water Lilies</h2>
+                    <p class="art-detail-artist">by Claude Monet</p>
+                    <p class="art-detail-price">$54,000,000</p>
+                    
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1919</p>
+                        <p><strong>Medium:</strong> Oil on canvas</p>
+                        <p><strong>Dimensions:</strong> 100 cm × 200 cm (39 in × 79 in)</p>
+                        <p><strong>Location:</strong> Musée de l'Orangerie, Paris</p>
+                        <p><strong>Style:</strong> Impressionism</p>
+                    </div>
+                    
+                    <div class="art-detail-description">
+                        <p><em>Water Lilies</em> is a series of approximately 250 oil paintings by Claude Monet, depicting his flower garden at Giverny. Painted during the last 30 years of his life, these works focus on the water lily pond under varying light and weather conditions.</p>
+                        <p>Monet's later works, including the <em>Water Lilies</em> series, are characterized by loose brushwork and a dreamy, almost abstract quality. The paintings often lack a horizon line, immersing the viewer in the reflective surface of the water.</p>
+                        <p>These works represent Monet's lifelong fascination with light and its changing qualities, as well as his mastery of color harmonies. The large-scale panels in the Musée de l'Orangerie were specially designed to create an immersive environment.</p>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Claude Monet', 'Water Lilies', '54000000', 'https://i0.wp.com/puamsab.princeton.edu/wp-content/uploads/sites/132/2017/04/Giverny_Garden.jpeg?resize=640%2C319')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="woman-parasol-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="woman-parasol-main" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Claude_Monet_-Woman_with_a_Parasol-Madame_Monet_and_Her_Son-Google_Art_Project.jpg/1280px-Claude_Monet-Woman_with_a_Parasol-Madame_Monet_and_Her_Son-_Google_Art_Project.jpg" alt="Woman with a Parasol" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Claude_Monet_023.jpg/197px-Claude_Monet_023.jpg" alt="Front view" class="thumbnail active" onclick="changeMainImage('woman-parasol-main', this)">
+                        <img src="https://i.ebayimg.com/images/g/3rMAAOSwYXlim7za/s-l400.jpg" alt="Detail view" class="thumbnail" onclick="changeMainImage('woman-parasol-main', this)">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeZLSyJoGAi-XMUOiVoR_n-04Q8hnlnu6fkQ&s" alt="Alternate angle" class="thumbnail" onclick="changeMainImage('woman-parasol-main', this)">
+                    </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Claude_Monet_023.jpg/197px-Claude_Monet_023.jpg" alt="Woman with a Parasol on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">Woman with a Parasol</h2>
+                    <p class="art-detail-artist">by Claude Monet</p>
+                    <p class="art-detail-price">$45,000,000</p>
+                    
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1875</p>
+                        <p><strong>Medium:</strong> Oil on canvas</p>
+                        <p><strong>Dimensions:</strong> 100 cm × 81 cm (39 in × 32 in)</p>
+                        <p><strong>Location:</strong> National Gallery of Art, Washington, D.C.</p>
+                        <p><strong>Style:</strong> Impressionism</p>
+                    </div>
+                    
+                    <div class="art-detail-description">
+                        <p><em>Woman with a Parasol - Madame Monet and Her Son</em> depicts Monet's wife Camille and their son Jean during a windy summer day in Argenteuil. The painting captures a fleeting moment with spontaneity and vibrant brushwork.</p>
+                        <p>This work exemplifies Monet's ability to convey movement, light, and atmosphere. The parasol casts subtle shadows on Camille's face, while her billowing dress and the swirling clouds suggest a breeze. The low viewpoint gives the figure a monumental presence against the sky.</p>
+                        <p>The painting demonstrates Monet's signature Impressionist style, with visible brushstrokes and attention to the effects of natural light. It remains one of his most beloved and recognizable works.</p>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Claude Monet', 'Woman with a Parasol', '45000000', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Claude_Monet_023.jpg/197px-Claude_Monet_023.jpg')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="poppies-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="poppies-main" src="https://cdn.overstockart.com/blog/wp-content/uploads/2015/04/poppies-monet.jpg" alt="Poppies" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://cdn.overstockart.com/blog/wp-content/uploads/2015/04/poppies-monet.jpg" alt="Front view" class="thumbnail active" onclick="changeMainImage('poppies-main', this)">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Poppy_Field_in_Argenteuil%2C_Claude_Monet.jpg/640px-Poppy_Field_in_Argenteuil%2C_Claude_Monet.jpg" alt="Detail view" class="thumbnail" onclick="changeMainImage('poppies-main', this)">
+                        <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/poppy-field-in-a-valley-near-giverny-carole-sluski.jpg" alt="Alternate angle" class="thumbnail" onclick="changeMainImage('poppies-main', this)">
+                    </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://cdn.overstockart.com/blog/wp-content/uploads/2015/04/poppies-monet.jpg" alt="Woman with a Parasol on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">Poppies</h2>
+                    <p class="art-detail-artist">by Claude Monet</p>
+                    <p class="art-detail-price">$55,000,000</p>
+                    
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1875</p>
+                        <p><strong>Medium:</strong> Oil on canvas</p>
+                        <p><strong>Dimensions:</strong> 50 cm × 65 cm (20 in × 26 in)</p>
+                        <p><strong>Location:</strong> National Gallery of Art, Washington, D.C.</p>
+                        <p><strong>Style:</strong> Impressionism</p>
+                    </div>
+                    
+                    <div class="art-detail-description">
+                        <p><em>Woman with a Parasol - Madame Monet and Her Son</em> depicts Monet's wife Camille and their son Jean during a windy summer day in Argenteuil. The painting captures a fleeting moment with spontaneity and vibrant brushwork.</p>
+                        <p>This work exemplifies Monet's ability to convey movement, light, and atmosphere. The parasol casts subtle shadows on Camille's face, while her billowing dress and the swirling clouds suggest a breeze. The low viewpoint gives the figure a monumental presence against the sky.</p>
+                        <p>The painting demonstrates Monet's signature Impressionist style, with visible brushstrokes and attention to the effects of natural light. It remains one of his most beloved and recognizable works.</p>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Claude Monet', 'Poppies', '55000000', 'https://cdn.overstockart.com/blog/wp-content/uploads/2015/04/poppies-monet.jpg')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div id="guernica-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <div class="art-detail-container">
+                    <div class="art-detail-images">
+                        <img id="guernica-main" src="https://upload.wikimedia.org/wikipedia/en/7/74/PicassoGuernica.jpg" alt="Guernica" class="main-image">
+                        <div class="thumbnail-container">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/7/74/PicassoGuernica.jpg" alt="Front view" class="thumbnail active" onclick="changeMainImage('guernica-main', this)">
+                            <img src="https://blog.artsper.com/wp-content/uploads/2022/07/Pablo-Picasso-%E2%80%93-Guernica-detail-1937-oil-painting-on-canvas-3.49-x-7.77m-installation-view-Museo-Reina-Sofi%CC%81a-Madrid-Spain-scaled-1.jpg" alt="Detail view" class="thumbnail" onclick="changeMainImage('guernica-main', this)">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbWO5ea5vqMMjg7XxbbVVbthBQmEtCs9PBQ1RrA_lIAhRuJ6LAtcPc7oXkh9YM22MUyK8&usqp=CAU" alt="Angle view" class="thumbnail" onclick="changeMainImage('guernica-main', this)">
+                        </div>
+                        <div class="wall-preview-container">
+                            <h3 class="wall-preview-title">How it looks on your wall</h3>
+                            <div class="wall-preview">
+                                <img src="https://upload.wikimedia.org/wikipedia/en/7/74/PicassoGuernica.jpg" alt="Guernica on wall" class="wall-preview-image">
+                            </div>
+                            <div class="size-options">
+                                <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                                <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                                <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="art-detail-info">
+                        <h2 class="art-detail-title">Guernica</h2>
+                        <p class="art-detail-artist">by Pablo Picasso</p>
+                        <p class="art-detail-price">$200,000,000</p>
+                        <div class="art-detail-meta">
+                            <p><strong>Year:</strong> 1937</p>
+                            <p><strong>Medium:</strong> Oil on canvas</p>
+                            <p><strong>Dimensions:</strong> 349 cm × 776 cm (137.4 in × 305.5 in)</p>
+                            <p><strong>Location:</strong> Museo Reina Sofía, Madrid</p>
+                            <p><strong>Style:</strong> Cubism</p>
+                        </div>  
+                        <div class="art-detail-description">
+                            <p>Guernica is a large 1937 oil painting on canvas by Spanish artist Pablo Picasso. It is one of his best-known works, regarded by many art critics as the most moving and powerful anti-war painting in history. It is exhibited in the Museo Reina Sofía in Madrid.</p>
+                            <p>The painting was created in response to the bombing of Guernica, a Basque Country town in northern Spain, by Nazi Germany and Fascist Italy at the request of the Spanish Nationalists. Upon completion, Guernica was exhibited at the Spanish display at the 1937 Paris International Exposition, and then at other venues around the world.</p>
+                            <p>The painting's monochromatic palette, intense contrast, and large scale contribute to its dramatic impact. The complex composition, with its tortured figures and animals, presents a powerful condemnation of war and violence. Picasso's use of Cubist techniques to depict the human and animal forms creates a sense of fragmentation that mirrors the destruction of war.</p>
+                        </div>
+                        <div class="detail-actions">
+                            <button class="btn btn-detail-buy" onclick="addToCart('Pablo Picasso', 'Guernica', '200000000', 'https://upload.wikimedia.org/wikipedia/en/7/74/PicassoGuernica.jpg')">Add to Cart</button>
+                            <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="demoiselles-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="demoiselles-avignon-main" src="https://upload.wikimedia.org/wikipedia/en/4/4c/Les_Demoiselles_d%27Avignon.jpg" alt="Les Demoiselles d'Avignon" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/4/4c/Les_Demoiselles_d%27Avignon.jpg" alt="Full view" class="thumbnail active" onclick="changeMainImage('demoiselles-avignon-main', this)">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHtO7vV0EM_OkROnH9QwtiYbzZvKCG3nWXLg&s" alt="Face detail" class="thumbnail" onclick="changeMainImage('demoiselles-avignon-main', this)">
+                        <img src="https://www.moma.org/research/conservation/demoiselles/images/analysis/X-ray-head_1_c.jpg" alt="Figure detail" class="thumbnail" onclick="changeMainImage('demoiselles-avignon-main', this)">
+                    </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/4/4c/Les_Demoiselles_d%27Avignon.jpg" alt="Les Demoiselles on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (60cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (90cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (120cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">Les Demoiselles d'Avignon</h2>
+                    <p class="art-detail-artist">by Pablo Picasso</p>
+                    <p class="art-detail-price">$150,000,000</p>
+                    
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1907</p>
+                        <p><strong>Medium:</strong> Oil on canvas</p>
+                        <p><strong>Dimensions:</strong> 243.9 cm × 233.7 cm (96 in × 92 in)</p>
+                        <p><strong>Location:</strong> Museum of Modern Art, New York</p>
+                        <p><strong>Style:</strong> Proto-Cubism</p>
+                    </div>
+                    
+                    <div class="art-detail-description">
+                        <p>This revolutionary work depicts five nude female prostitutes in a brothel, with figures rendered in jagged, disjointed shapes. Two figures exhibit African mask-like features, reflecting Picasso's fascination with tribal art.</p>
+                        <p>The painting broke nearly every convention of Western art at the time - abandoning perspective, distorting figures, and incorporating primitive art influences. It marked the beginning of Cubism and radically changed the course of modern art.</p>
+                        <p>Originally considered shocking and controversial, it's now recognized as one of the most important works in the development of modern art. The angular, fragmented composition creates a sense of psychological tension and raw energy.</p>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Pablo Picasso', 'Les Demoiselles d Avignon', '150000000', 'https://upload.wikimedia.org/wikipedia/en/4/4c/Les_Demoiselles_d%27Avignon.jpg')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="weeping-woman-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="weeping-woman-main" src="https://upload.wikimedia.org/wikipedia/en/3/3d/Picasso_Weeping_Woman.jpg" alt="The Weeping Woman" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/1/14/Picasso_The_Weeping_Woman_Tate_identifier_T05010_10.jpg" alt="Full view" class="thumbnail active" onclick="changeMainImage('weeping-woman-main', this)">
+                        <img src="https://content.ngv.vic.gov.au/col-images/api/Fd100994/1280" alt="Face detail" class="thumbnail" onclick="changeMainImage('weeping-woman-main', this)">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4UDuTiCtoM9Bs0rdc-4ZudRQebGaaquJwKg&s" alt="Handkerchief detail" class="thumbnail" onclick="changeMainImage('weeping-woman-main', this)">
+                    </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/1/14/Picasso_The_Weeping_Woman_Tate_identifier_T05010_10.jpg" alt="Weeping Woman on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">The Weeping Woman</h2>
+                    <p class="art-detail-artist">by Pablo Picasso</p>
+                    <p class="art-detail-price">$80,000,000</p>
+                    
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1937</p>
+                        <p><strong>Medium:</strong> Oil on canvas</p>
+                        <p><strong>Dimensions:</strong> 60 cm × 49 cm (23.6 in × 19.3 in)</p>
+                        <p><strong>Location:</strong> Tate Modern, London</p>
+                        <p><strong>Style:</strong> Cubism/Surrealism</p>
+                    </div>  
+                    <div class="art-detail-description">
+                        <p>This portrait of Dora Maar, Picasso's lover and muse, represents the suffering of women during the Spanish Civil War. The distorted face, with its jagged lines and contrasting colors, conveys intense emotional pain.</p>
+                        <p>Part of Picasso's response to the bombing of Guernica, the work transforms human suffering into a cubist composition where the woman's features are fragmented yet express profound grief. The handkerchief clutched to her face appears to merge with her skin.</p>
+                        <p>The vibrant colors - acid greens, purples, and yellows - create visual tension, while the sharp angles of the composition heighten the sense of distress. This is considered one of Picasso's most powerful depictions of human suffering.</p>
+                    </div>
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Pablo Picasso', 'The Weeping Woman', '80000000', 'https://upload.wikimedia.org/wikipedia/en/1/14/Picasso_The_Weeping_Woman_Tate_identifier_T05010_10.jpg')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="la-vie-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="la-vie-main" src="https://upload.wikimedia.org/wikipedia/en/3/3d/Picasso_Weeping_Woman.jpg" alt="The Weeping Woman" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://i.etsystatic.com/5717674/r/il/d663bb/1053513285/il_570xN.1053513285_p2mg.jpg" alt="Full view" class="thumbnail active" onclick="changeMainImage('la-vie-main', this)">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp2Y3o7tvMpaYGGZwqJ7aXdURLXk8G1brGnA&s" alt="Face detail" class="thumbnail" onclick="changeMainImage('la-vie-main', this)">
+                        <img src="https://bluesurfart.com/cdn/shop/files/la-vie-life-picasso-blue-surf-art-6_1800x1800.jpg?v=1720959224" alt="Handkerchief detail" class="thumbnail" onclick="changeMainImage('la-vie-main', this)">
+                    </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://i.etsystatic.com/5717674/r/il/d663bb/1053513285/il_570xN.1053513285_p2mg.jpg" alt="Weeping Woman on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">La Vie</h2>
+                    <p class="art-detail-artist">by Pablo Picasso</p>
+                    <p class="art-detail-price">$90,000,000</p>
+                    
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1937</p>
+                        <p><strong>Medium:</strong> Oil on canvas</p>
+                        <p><strong>Dimensions:</strong> 196.5 cm × 129.2 cm (77.4 in × 50.9 in)</p>
+                        <p><strong>Location:</strong> Tate Modern, London</p>
+                        <p><strong>Style:</strong> Cubism/Surrealism</p>
+                    </div> 
+                    <div class="art-detail-description">
+                        <p>This portrait of Dora Maar, Picasso's lover and muse, represents the suffering of women during the Spanish Civil War. The distorted face, with its jagged lines and contrasting colors, conveys intense emotional pain.</p>
+                        <p>Part of Picasso's response to the bombing of Guernica, the work transforms human suffering into a cubist composition where the woman's features are fragmented yet express profound grief. The handkerchief clutched to her face appears to merge with her skin.</p>
+                        <p>The vibrant colors - acid greens, purples, and yellows - create visual tension, while the sharp angles of the composition heighten the sense of distress. This is considered one of Picasso's most powerful depictions of human suffering.</p>
+                    </div>  
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Pablo Picasso', 'La Vie', '90000000', 'https://i.etsystatic.com/5717674/r/il/d663bb/1053513285/il_570xN.1053513285_p2mg.jpg')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="henry-ford-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="henry-ford-hospital-main" src="https://upload.wikimedia.org/wikipedia/en/5/5a/Frida_Kahlo_-Henry_Ford_Hospital%281932%29.jpg" alt="Henry Ford Hospital" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://miro.medium.com/v2/resize:fit:261/1*WNwU0Sw3Kjv1vf7mMfHenA.jpeg" alt="Full view" class="thumbnail active" onclick="changeMainImage('henry-ford-hospital-main', this)">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/d/d9/Frida_Kahlo_painting_Henry_Ford_Hospital_1932.jpeg" alt="Detail of figures" class="thumbnail" onclick="changeMainImage('henry-ford-hospital-main', this)">
+                        <img src="https://www.researchgate.net/publication/269653343/figure/fig7/AS:504082458132480@1497194031442/Henry-Ford-Hospital-La-cama-volando-The-flying-bed1932-Oil-on-metal-305x38cm.png" alt="Bed detail" class="thumbnail" onclick="changeMainImage('henry-ford-hospital-main', this)">
+                    </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://miro.medium.com/v2/resize:fit:261/1*WNwU0Sw3Kjv1vf7mMfHenA.jpeg" alt="Henry Ford Hospital on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (40cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (60cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (80cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">Henry Ford Hospital</h2>
+                    <p class="art-detail-artist">by Frida Kahlo</p>
+                    <p class="art-detail-price">$25,000,000</p>              
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1932</p>
+                        <p><strong>Medium:</strong> Oil on metal</p>
+                        <p><strong>Dimensions:</strong> 38.1 cm × 30.5 cm (15 in × 12 in)</p>
+                        <p><strong>Location:</strong> Dolores Olmedo Museum, Mexico City</p>
+                        <p><strong>Style:</strong> Surrealism/Naïve art</p>
+                    </div>         
+                    <div class="art-detail-description">
+                        <p>This deeply personal work depicts Kahlo's experience of miscarriage at Henry Ford Hospital in Detroit. The painting shows Kahlo bleeding on a hospital bed, connected by red ribbons to six floating images representing her trauma.</p>
+                        <p>The symbolic elements include a fetus (her lost child), a pelvic bone (referencing her childhood accident), a medical model of female anatomy, an orchid (a gift from Diego Rivera), and a machine (representing Detroit's industrialization).</p>
+                        <p>Painted in Kahlo's signature style blending realism with symbolic elements, the work is a powerful expression of physical and emotional pain. The barren industrial landscape in the background contrasts with the intensely personal foreground imagery.</p>
+                    </div> 
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Frida Kahlo', 'Henry Ford Hospital', '25000000', 'https://miro.medium.com/v2/resize:fit:261/1*WNwU0Sw3Kjv1vf7mMfHenA.jpeg')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="thorn-necklace-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="art-detail-container">
+                <div class="art-detail-images">
+                    <img id="thorn-necklace-main" src="https://upload.wikimedia.org/wikipedia/en/4/4e/Frida_Kahlo_-Self-Portrait_with_Thorn_Necklace_and_Hummingbird%281940%29.jpg" alt="Self-Portrait with Thorn Necklace" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC7dqGpLcI2XebY4dSTfCGT33KbuNCPv9bkQ&s" alt="Full view" class="thumbnail active" onclick="changeMainImage('thorn-necklace-main', this)">
+                        <img src="https://galleryintell.com/wp-content/uploads/2013/10/frida-kahlo_self-portrait-with-hummingbird-detail.jpg" alt="Necklace detail" class="thumbnail" onclick="changeMainImage('thorn-necklace-main', this)">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRggm6rqFaqb5EqiW-VE2JbsE6MKr9IrhyPXA&s" alt="Face detail" class="thumbnail" onclick="changeMainImage('thorn-necklace-main', this)">
+                    </div>
+                    <div class="wall-preview-container">
+                        <h3 class="wall-preview-title">How it looks on your wall</h3>
+                        <div class="wall-preview">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBn3G_xVWVsu6nzSs1VWSBoIkOVV5gcsqWXg&s" alt="Self-Portrait on wall" class="wall-preview-image">
+                        </div>
+                        <div class="size-options">
+                            <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (45cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (65cm)</div>
+                            <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (85cm)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="art-detail-info">
+                    <h2 class="art-detail-title">Self-Portrait with Thorn Necklace and Hummingbird</h2>
+                    <p class="art-detail-artist">by Frida Kahlo</p>
+                    <p class="art-detail-price">$30,000,000</p>
+                    
+                    <div class="art-detail-meta">
+                        <p><strong>Year:</strong> 1940</p>
+                        <p><strong>Medium:</strong> Oil on canvas</p>
+                        <p><strong>Dimensions:</strong> 61 cm × 47 cm (24 in × 18.5 in)</p>
+                        <p><strong>Location:</strong> Harry Ransom Center, Austin, Texas</p>
+                        <p><strong>Style:</strong> Surrealism/Naïve art</p>
+                    </div>
+                    
+                    <div class="art-detail-description">
+                        <p>This iconic self-portrait shows Kahlo wearing a thorn necklace that draws blood, with a dead hummingbird hanging from it. Butterflies and a black cat flank her head, while a monkey plays with the thorn necklace.</p>
+                        <p>The thorns represent the pain of her recent divorce from Diego Rivera, while the hummingbird (normally a symbol of luck in Mexican folklore) appears lifeless, suggesting her emotional state. The butterflies symbolize resurrection.</p>
+                        <p>Kahlo's steady gaze challenges the viewer despite her obvious pain. The lush green background and white leaves frame her face, drawing attention to her stoic expression amidst suffering. This work exemplifies Kahlo's unique blend of personal symbolism and Mexican cultural references.</p>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <button class="btn btn-detail-buy" onclick="addToCart('Frida Kahlo', 'Self-Portrait with Thorn Necklace and Hummingbird', '30000000', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBn3G_xVWVsu6nzSs1VWSBoIkOVV5gcsqWXg&s')">Add to Cart</button>
+                        <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- Kahlo - The Two Fridas -->
+        <div id="two-fridas-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <div class="art-detail-container">
+                    <div class="art-detail-images">
+                        <img id="two-fridas-main" src="https://upload.wikimedia.org/wikipedia/en/4/44/Frida_Kahlo_-The_Two_Fridas%28Las_dos_Fridas%29_1939.jpg" alt="The Two Fridas" class="main-image">
+                        <div class="thumbnail-container">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLLpDKPY2i6u51jQQmNnR9Vcorj_epTMKFA&s" alt="Front view" class="thumbnail active" onclick="changeMainImage('two-fridas-main', this)">
+                            <img src="https://www.tallengestore.com/cdn/shop/files/The_Two_Fridas_Las_Dos_Fridas_-_Frida_Khalo_Masterpiece_Painting_1_8adb17b9-ac24-4827-9433-11fe747ef1a6.jpg?v=1719210722" alt="Detail view" class="thumbnail" onclick="changeMainImage('two-fridas-main', this)">
+                            <img src="https://simplykalaa.com/wp-content/uploads/2024/04/The-Two-Fridas-Analysis-Light-and-Value-1021x1024.jpeg" alt="Angle view" class="thumbnail" onclick="changeMainImage('two-fridas-main', this)">
+                        </div>
+                        <div class="wall-preview-container">
+                            <h3 class="wall-preview-title">How it looks on your wall</h3>
+                            <div class="wall-preview">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLLpDKPY2i6u51jQQmNnR9Vcorj_epTMKFA&s" alt="The Two Fridas on wall" class="wall-preview-image">
+                            </div>
+                            <div class="size-options">
+                                <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                                <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                                <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="art-detail-info">
+                        <h2 class="art-detail-title">The Two Fridas</h2>
+                        <p class="art-detail-artist">by Frida Kahlo</p>
+                        <p class="art-detail-price">$35,000,000</p>
+                        
+                        <div class="art-detail-meta">
+                            <p><strong>Year:</strong> 1939</p>
+                            <p><strong>Medium:</strong> Oil on canvas</p>
+                            <p><strong>Dimensions:</strong> 173.5 cm × 173 cm (68.3 in × 68 in)</p>
+                            <p><strong>Location:</strong> Museo de Arte Moderno, Mexico City</p>
+                            <p><strong>Style:</strong> Surrealism</p>
+                        </div>
+                        
+                        <div class="art-detail-description">
+                            <p>The Two Fridas is a double self-portrait by Mexican artist Frida Kahlo. The painting was created in 1939, the same year Kahlo divorced Diego Rivera, and is believed to be an expression of her feelings at the time.</p>
+                            <p>The painting depicts two versions of Kahlo sitting side by side, with their hands linked. One Frida wears a white European-style dress (representing the Frida that Diego rejected), while the other wears a traditional Tehuana dress (representing the Frida that Diego loved). Both Fridas have exposed hearts, and the heart of the traditional Frida is healthy and whole, while the heart of the European Frida is broken and bleeding.</p>
+                            <p>The painting is rich in symbolism, with the stormy sky in the background reflecting Kahlo's inner turmoil, and the surgical pincers held by the traditional Frida suggesting her attempts to stem the flow of blood from her wounded heart. The painting is considered one of Kahlo's most iconic works and a masterpiece of 20th-century art.</p>
+                        </div>
+                        
+                        <div class="detail-actions">
+                            <button class="btn btn-detail-buy" onclick="addToCart('Frida Kahlo', 'The Two Fridas', '35000000', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLLpDKPY2i6u51jQQmNnR9Vcorj_epTMKFA&s')">Add to Cart</button>
+                            <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="broken-column-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <div class="art-detail-container">
+                    <div class="art-detail-images">
+                        <img id="broken-column-main" src="https://upload.wikimedia.org/wikipedia/en/4/44/Frida_Kahlo_-The_Two_Fridas%28Las_dos_Fridas%29_1939.jpg" alt="The Two Fridas" class="main-image">
+                        <div class="thumbnail-container">
+                            <img src="https://www.dailyartmagazine.com/wp-content/uploads/2021/10/ddd-4.jpg" alt="Front view" class="thumbnail active" onclick="changeMainImage('broken-column-main', this)">
+                            <img src="https://charlotteabrahamart.wordpress.com/wp-content/uploads/2016/10/thebrokencolumn1944.jpg?w=584" alt="Detail view" class="thumbnail" onclick="changeMainImage('broken-column-main', this)">
+                            <img src="https://artincontext.org/wp-content/uploads/2021/11/Detail-of-The-Broken-Column-Painting.jpg" alt="Angle view" class="thumbnail" onclick="changeMainImage('broken-column-main', this)">
+                        </div>
+                        <div class="wall-preview-container">
+                            <h3 class="wall-preview-title">How it looks on your wall</h3>
+                            <div class="wall-preview">
+                                <img src="https://www.dailyartmagazine.com/wp-content/uploads/2021/10/ddd-4.jpg" alt="The Two Fridas on wall" class="wall-preview-image">
+                            </div>
+                            <div class="size-options">
+                                <div class="size-option active" onclick="changeWallPreviewSize(this, 'small')">Small (50cm)</div>
+                                <div class="size-option" onclick="changeWallPreviewSize(this, 'medium')">Medium (75cm)</div>
+                                <div class="size-option" onclick="changeWallPreviewSize(this, 'large')">Large (100cm)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="art-detail-info">
+                        <h2 class="art-detail-title">The Broken Column</h2>
+                        <p class="art-detail-artist">by Frida Kahlo</p>
+                        <p class="art-detail-price">$40,000,000</p>
+                        
+                        <div class="art-detail-meta">
+                            <p><strong>Year:</strong> 1939</p>
+                            <p><strong>Medium:</strong> Oil on canvas</p>
+                            <p><strong>Dimensions:</strong> 40 cm × 30.7 cm (15.7 in × 12.1 in)</p>
+                            <p><strong>Location:</strong> Museo de Arte Moderno, Mexico City</p>
+                            <p><strong>Style:</strong> Surrealism</p>
+                        </div>
+                        
+                        <div class="art-detail-description">
+                            <p>The Two Fridas is a double self-portrait by Mexican artist Frida Kahlo. The painting was created in 1939, the same year Kahlo divorced Diego Rivera, and is believed to be an expression of her feelings at the time.</p>
+                            <p>The painting depicts two versions of Kahlo sitting side by side, with their hands linked. One Frida wears a white European-style dress (representing the Frida that Diego rejected), while the other wears a traditional Tehuana dress (representing the Frida that Diego loved). Both Fridas have exposed hearts, and the heart of the traditional Frida is healthy and whole, while the heart of the European Frida is broken and bleeding.</p>
+                            <p>The painting is rich in symbolism, with the stormy sky in the background reflecting Kahlo's inner turmoil, and the surgical pincers held by the traditional Frida suggesting her attempts to stem the flow of blood from her wounded heart. The painting is considered one of Kahlo's most iconic works and a masterpiece of 20th-century art.</p>
+                        </div>
+                        
+                        <div class="detail-actions">
+                            <button class="btn btn-detail-buy" onclick="addToCart('Frida Kahlo', 'The Broken Column', '40000000', 'https://www.dailyartmagazine.com/wp-content/uploads/2021/10/ddd-4.jpg')">Add to Cart</button>
+                            <button class="btn btn-detail-close" onclick="closeModal()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Your Shopping Cart</h2>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be displayed here -->
+                <p>Your cart is empty</p>
+            </div>
+            <div class="cart-total">
+                Total: $<span id="cart-total">0</span>
+            </div>
+            <div class="cart-actions">
+                <button class="btn btn-cart-close" onclick="closeModal()">Continue Shopping</button>
+                <button class="btn btn-checkout" onclick="showCheckout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="checkout-modal">
+        <div class="checkout-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Checkout</h2>
+            <form method="POST" action="submit_checkout.php" class="checkout-form" id="checkout-form" >
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" name="full_name"required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email"name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Shipping Address</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city"name="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="zip">ZIP Code</label>
+                    <input type="text" id="zip"name="zip" required>
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" name="country"required>
+                        <option value="">Select Country</option>
+                        <option value="US">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="CA">Canada</option>
+                        <option value="IN">India</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                        <option value="JP">Japan</option>
+                    </select>
+                </div>
+                
+                <h3>Payment Method</h3>
+                <div class="payment-methods">
+                    <div class="payment-method" onclick="selectPaymentMethod(this)">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa">
+                        <span>Visa</span>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod(this)">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1280px-PayPal.svg.png" alt="PayPal">
+                        <span>PayPal</span>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod(this)">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Apple_Pay_logo.svg/2560px-Apple_Pay_logo.svg.png" alt="Apple Pay">
+                        <span>Apple Pay</span>
+                    </div>
+                </div>
+                <input type="hidden" id="payment-method" name="payment_method" required>
+
+                
+                <div class="checkout-actions">
+                    <button type="button" class="btn btn-cart-close" onclick="showCart()">Back to Cart</button>
+                    <button type="submit" name="checkout_submit" class="btn btn-checkout">Complete Purchase</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div id="confirmation-modal" class="confirmation-modal">
+        <div class="confirmation-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="confirmation-icon">✓</div>
+            <h2>Thank You For Your Purchase!</h2>
+            <p class="confirmation-message">Your order has been placed successfully.</p>
+            
+            <div class="confirmation-details" id="order-details">
+                <!-- Order details will be displayed here -->
+            </div>
+            
+            <div class="confirmation-actions">
+                <button class="btn btn-print" onclick="window.print()">Print Receipt</button>
+                <button class="btn btn-continue" onclick="closeModal()">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Sign In</h2>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+            <p>Don't have an account? <a href="#" onclick="showSignupModal()">Sign Up</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signup-form" onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" onclick="showLoginModal()">Sign In</a></p>
+        </div>
+    </div>
+    
+    <script>
+       document.getElementById("checkout-form").addEventListener("submit", function (e) {
+        e.preventDefault(); // prevent default form submission
+
+        const formData = new FormData(this);
+
+        fetch("submit_checkout.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data.trim() === "success") {
+                // Show confirmation modal
+                document.getElementById("confirmation-modal").style.display = "block";
+            } else {
+                alert("Something went wrong:\n" + data);
+            }
+        })
+        .catch(error => {
+            alert("Network error: " + error);
+        });
+    });
+       // Current artist profile being viewed
+        let currentArtist = null;
+        
+        // Shopping cart data
+        let cart = [];
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide all artist profiles initially
+            document.querySelectorAll('.artist-profile').forEach(profile => {
+                profile.style.display = 'none';
+            });
+            
+            // Set up form submission
+            document.getElementById('checkout-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                completePurchase();
+            });
+        });
+        
+        // Show artist profile
+        function showArtistProfile(artistId) {
+            // Hide artists list
+            document.getElementById('artists-list').style.display = 'none';
+            
+            // Show selected artist profile
+            document.getElementById(artistId + '-profile').style.display = 'block';
+            currentArtist = artistId;
+            
+            // Show bio tab by default
+            showTab(artistId + '-bio');
+        }
+        
+
+        
+        // Show tab content
+        function showTab(tabId) {
+            // Hide all tab contents in current artist profile
+            document.querySelectorAll('#' + currentArtist + '-profile .tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update active nav link
+            document.querySelectorAll('#' + currentArtist + '-profile .profile-nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        // Show art detail modal
+        function showArtDetail(artistId, artId) {
+            document.getElementById(artId + '-modal').style.display = 'block';
+        }
+        
+        // Close any modal
+        function closeModal() {
+            // Close all modals including confirmation modal
+            document.querySelectorAll('.modal, .checkout-modal, .confirmation-modal, .cart-modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+        }
+
+        // Update the confirmation modal's continue shopping button
+        const continueBtn = document.querySelector('.btn-continue');
+        if (continueBtn) {
+            continueBtn.onclick = function() {
+                closeModal();
+            };
+        }
+
+        // Add event listener for close button
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.onclick = function() {
+                closeModal();
+            };
+        });
+
+        // Update the back button functionality in artist profiles
+        // This remains the same as it already does what we want
+        function hideArtistProfile() {
+            document.getElementById('artists-list').style.display = 'flex';
+            document.getElementById(currentArtist + '-profile').style.display = 'none';
+            currentArtist = null;
+        }
+
+        // Change main image in art detail
+        function changeMainImage(mainImageId, thumbnail) {
+            document.getElementById(mainImageId).src = thumbnail.src;
+            
+            // Update active thumbnail
+            thumbnail.parentElement.querySelectorAll('.thumbnail').forEach(img => {
+                img.classList.remove('active');
+            });
+            thumbnail.classList.add('active');
+        }
+        
+        // Change wall preview size
+        function changeWallPreviewSize(option, size) {
+            // Update active size option
+            option.parentElement.querySelectorAll('.size-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            option.classList.add('active');
+            
+            // Adjust preview image size (simplified example)
+            const previewImage = option.closest('.wall-preview-container').querySelector('.wall-preview-image');
+            switch(size) {
+                case 'small':
+                    previewImage.style.maxWidth = '40%';
+                    previewImage.style.maxHeight = '40%';
+                    break;
+                case 'medium':
+                    previewImage.style.maxWidth = '60%';
+                    previewImage.style.maxHeight = '60%';
+                    break;
+                case 'large':
+                    previewImage.style.maxWidth = '80%';
+                    previewImage.style.maxHeight = '80%';
+                    break;
+            }
+        }
+        
+        // Add item to cart
+        function addToCart(artist, title, price, image) {
+            if (!isAuthenticated) {
+                // Store the purchase details in localStorage
+                localStorage.setItem('pendingPurchase', JSON.stringify({
+                    artist: artist,
+                    title: title,
+                    price: price,
+                    image: image
+                }));
+                // Redirect to login page
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Check if item already in cart
+            const existingItem = cart.find(item => item.title === title);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    artist: artist,
+                    title: title,
+                    price: parseFloat(price),
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            
+            // Show confirmation (could be enhanced)
+            alert(title + ' has been added to your cart!');
+        }
+        
+        // Update cart display
+        function updateCart() {
+            const cartItemsElement = document.getElementById('cart-items');
+            const cartCountElement = document.getElementById('cart-count');
+            const cartTotalElement = document.getElementById('cart-total');
+            
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+            
+            // Update cart items list
+            if (cart.length === 0) {
+                cartItemsElement.innerHTML = '<p>Your cart is empty</p>';
+                cartTotalElement.textContent = '0';
+                return;
+            }
+            
+            cartItemsElement.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="cart-item-info">
+                        <h3 class="cart-item-title">${item.title}</h3>
+                        <p class="cart-item-artist">${item.artist}</p>
+                        <p class="cart-item-price">$${(item.price * item.quantity).toLocaleString()}</p>
+                        <p>Quantity: ${item.quantity}</p>
+                    </div>
+                    <span class="remove-item" onclick="removeFromCart(${index})">×</span>
+                `;
+                
+                cartItemsElement.appendChild(itemElement);
+                total += item.price * item.quantity;
+            });
+            
+            cartTotalElement.textContent = total.toLocaleString();
+        }
+        
+        // Remove item from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+        
+        // Show cart modal
+        function showCart() {
+            closeModal();
+            document.getElementById('cart-modal').style.display = 'block';
+        }
+        
+        // Show checkout modal
+        function showCheckout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            closeModal();
+            document.getElementById('checkout-modal').style.display = 'block';
+        }
+        
+        // Select payment method
+        function selectPaymentMethod(element) {
+            document.querySelectorAll('.payment-method').forEach(method => {
+        method.classList.remove('selected');
+    });
+
+    // Add 'selected' to clicked one
+    element.classList.add('selected');
+
+        }
+        
+        // Complete purchase
+        function completePurchase() {
+            // Check if payment method is selected
+            const selectedPayment = document.querySelector('.payment-method.selected');
+            if (!selectedPayment) {
+                alert('Please select a payment method');
+                return;
+            }
+
+            // Check if form is filled
+            const form = document.getElementById('checkout-form');
+            if (!form.checkValidity()) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            closeModal();
+            
+            // Prepare order details
+            const orderDetails = document.getElementById('order-details');
+            orderDetails.innerHTML = '';
+            
+            // Create order summary
+            const orderSummary = document.createElement('div');
+            orderSummary.className = 'order-summary';
+            
+            // Add order number (random for demo)
+            const orderNumber = Math.floor(Math.random() * 1000000);
+            const orderNumberElement = document.createElement('h3');
+            orderNumberElement.textContent = `Order #${orderNumber}`;
+            orderSummary.appendChild(orderNumberElement);
+            
+            // Add date
+            const dateElement = document.createElement('p');
+            const today = new Date();
+            dateElement.textContent = `Order Date: ${today.toLocaleDateString()}`;
+            orderSummary.appendChild(dateElement);
+            
+            // Add items table
+            const itemsTable = document.createElement('table');
+            itemsTable.className = 'order-items-table';
+            itemsTable.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Artwork</th>
+                        <th>Artist</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="order-items-body">
+                </tbody>
+            `;
+            
+            const itemsBody = itemsTable.querySelector('#order-items-body');
+            
+            // Add items to table
+            cart.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <img src="${item.image}" alt="${item.title}" class="order-item-image">
+                        ${item.title}
+                    </td>
+                    <td>${item.artist}</td>
+                    <td>${item.quantity}</td>
+                    <td>$${item.price.toLocaleString()}</td>
+                    <td>$${(item.price * item.quantity).toLocaleString()}</td>
+                `;
+                itemsBody.appendChild(row);
+            });
+            
+            orderSummary.appendChild(itemsTable);
+            
+            // Add totals
+            const totalsDiv = document.createElement('div');
+            totalsDiv.className = 'order-totals';
+            
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = 1000000; // Flat rate for demo
+            const tax = subtotal * 0.1; // 10% tax for demo
+            const total = subtotal + shipping + tax;
+            
+            totalsDiv.innerHTML = `
+                <div class="order-total-row">
+                    <span>Subtotal:</span>
+                    <span>$${subtotal.toLocaleString()}</span>
+                </div>
+                <div class="order-total-row">
+                    <span>Shipping:</span>
+                    <span>$${shipping.toLocaleString()}</span>
+                </div>
+                <div class="order-total-row">
+                    <span>Tax:</span>
+                    <span>$${tax.toLocaleString()}</span>
+                </div>
+                <div class="order-total-row grand-total">
+                    <span>Total:</span>
+                    <span>$${total.toLocaleString()}</span>
+                </div>
+            `;
+            
+            orderSummary.appendChild(totalsDiv);
+            
+            // Add shipping information
+            const shippingInfo = document.createElement('div');
+            shippingInfo.className = 'shipping-info';
+            
+            shippingInfo.innerHTML = `
+                <h3>Shipping Information</h3>
+                <p><strong>Name:</strong> ${form['full-name'].value}</p>
+                <p><strong>Email:</strong> ${form['email'].value}</p>
+                <p><strong>Address:</strong> ${form['address'].value}, ${form['city'].value}, ${form['zip'].value}</p>
+                <p><strong>Country:</strong> ${form['country'].options[form['country'].selectedIndex].text}</p>
+            `;
+            
+            orderSummary.appendChild(shippingInfo);
+            
+            // Add payment method
+            const paymentInfo = document.createElement('div');
+            paymentInfo.className = 'payment-info';
+            paymentInfo.innerHTML = `
+                <h3>Payment Method</h3>
+                <p>${selectedPayment.querySelector('span').textContent}</p>
+            `;
+            orderSummary.appendChild(paymentInfo);
+            
+            // Add estimated delivery
+            const deliveryInfo = document.createElement('div');
+            deliveryInfo.className = 'delivery-info';
+            
+            // Calculate estimated delivery date (3-5 business days)
+            const deliveryDate = new Date(today);
+            deliveryDate.setDate(deliveryDate.getDate() + 3 + Math.floor(Math.random() * 3));
+            
+            deliveryInfo.innerHTML = `
+                <h3>Estimated Delivery</h3>
+                <p>${deliveryDate.toLocaleDateString()}</p>
+                <p>Your artwork will be carefully packaged and shipped with insurance.</p>
+            `;
+            
+            orderSummary.appendChild(deliveryInfo);
+            
+            // Add to order details
+            orderDetails.appendChild(orderSummary);
+            
+            // Show confirmation
+            document.getElementById('confirmation-modal').style.display = 'block';
+            
+            // Clear cart
+            cart = [];
+            updateCart();
+            
+            // Reset form
+            form.reset();
+        }
+
+        // Authentication state
+        let isAuthenticated = false;
+        let currentUser = null;
+        let pendingPurchase = null;
+        let redirectAfterLogin = null;
+
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const storedAuth = localStorage.getItem('isAuthenticated');
+            const storedUser = localStorage.getItem('currentUser');
+            
+            if (storedAuth === 'true' && storedUser) {
+                isAuthenticated = true;
+                currentUser = JSON.parse(storedUser);
+                updateAuthUI();
+            }
+
+            // Initialize purchase history if not exists
+            if (!localStorage.getItem('purchaseHistory')) {
+                localStorage.setItem('purchaseHistory', JSON.stringify([]));
+            }
+        });
+
+        // Show login modal
+        function showLoginModal() {
+            closeModal();
+            document.getElementById('login-modal').style.display = 'block';
+        }
+
+        // Show signup modal
+        function showSignupModal() {
+            closeModal();
+            document.getElementById('signup-modal').style.display = 'block';
+        }
+
+        // Handle login
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            // Simulate authentication (replace with actual API call)
+            if (email && password) {
+                isAuthenticated = true;
+                currentUser = {
+                    name: email.split('@')[0],
+                    email: email
+                };
+                
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                updateAuthUI();
+                closeModal();
+                showAlert('Successfully signed in!', 'success');
+                
+                // Handle pending purchase if any
+                if (pendingPurchase) {
+                    addToCart(...pendingPurchase);
+                    pendingPurchase = null;
+                }
+
+                // Redirect to profile if requested
+                if (redirectAfterLogin) {
+                    window.location.href = redirectAfterLogin;
+                    redirectAfterLogin = null;
+                }
+            }
+        }
+
+        // Handle signup
+        function handleSignup(event) {
+            event.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            
+            // Simulate registration (replace with actual API call)
+            if (name && email && password) {
+                isAuthenticated = true;
+                currentUser = {
+                    name: name,
+                    email: email
+                };
+                
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                updateAuthUI();
+                closeModal();
+                showAlert('Successfully signed up!', 'success');
+                
+                // Handle pending purchase if any
+                if (pendingPurchase) {
+                    addToCart(...pendingPurchase);
+                    pendingPurchase = null;
+                }
+
+                // Redirect to profile if requested
+                if (redirectAfterLogin) {
+                    window.location.href = redirectAfterLogin;
+                    redirectAfterLogin = null;
+                }
+            }
+        }
+
+        // Show alert message
+        function showAlert(message, type = 'success') {
+            const alert = document.createElement('div');
+            alert.className = `auth-alert ${type}`;
+            alert.textContent = message;
+            document.body.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 3000);
+        }
+
+        // Update UI based on authentication state
+        function updateAuthUI() {
+            const authButtons = document.querySelectorAll('.auth-buttons');
+            const userInfo = document.querySelectorAll('.user-info');
+            
+            if (isAuthenticated && currentUser) {
+                authButtons.forEach(btn => btn.style.display = 'none');
+                userInfo.forEach(info => {
+                    info.style.display = 'block';
+                    info.querySelector('.user-name').textContent = currentUser.name;
+                });
+            } else {
+                authButtons.forEach(btn => btn.style.display = 'block');
+                userInfo.forEach(info => info.style.display = 'none');
+            }
+        }
+
+        // Modify addToCart function to check authentication
+        function addToCart(artist, title, price, image) {
+            if (!isAuthenticated) {
+                pendingPurchase = [artist, title, price, image];
+                redirectAfterLogin = 'profile.html';
+                showLoginModal();
+                return;
+            }
+            
+            // Original addToCart logic
+            const existingItem = cart.find(item => item.title === title);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    artist: artist,
+                    title: title,
+                    price: parseFloat(price),
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            showAlert(title + ' has been added to your cart!', 'success');
+        }
+
+        // Check authentication status
+        document.addEventListener('DOMContentLoaded', function() {
+            const isAuthenticated = localStorage.getItem('isAuthenticated');
+            const profileLink = document.getElementById('profile-link');
+            
+            if (isAuthenticated === 'true') {
+                profileLink.style.display = 'inline-block';
+            } else {
+                profileLink.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
